@@ -1,14 +1,21 @@
-;I don't know what this file does that isn't covered in `grammar.js`, but *whatever*
+; Statements
 
-; Variable Definition Name
+(function_definition
+  name: (identifier) @function)
+
 (variable_definition
   name: (identifier) @variable)
+
+; Expressions
+
+(function_call
+  name: (identifier) @function)
 
 ; Types
 
 (primitive_type) @type
-(pointer_type) @type
-(array_type) @type
+(pointer_type)   @type
+(array_type)     @type
 
 ; Literals
 
@@ -39,13 +46,13 @@
   "@"
 ] @operator
 
+[
+  "if"
+  "else"
+  "ext"
+] @keyword
+
 ; Why doesn't this work?
 ;(op_logical)    @operator
 ;(op_arithmetic) @operator
 ;(op_bitwise)    @operator
-
-;[
-;  "if"
-;  "else"
-;  "ext"
-;] @keyword

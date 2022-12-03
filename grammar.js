@@ -2,18 +2,21 @@ module.exports = grammar({
     name: 'un',
 
     rules: {
-        source_file: $ => repeat($._definition),
+        source_file: $ => repeat($._statement),
 
-        _definition: $ => choice(
+        _statement: $ => choice(
             $.function_definition,
-            $.variable_definition
-            // TODO: other kinds of definitions
+            $.variable_definition,
+            $._expression
         ),
 
         function_definition: $ => prec
         (2,
          seq(
-             field('def',    $.variable_definition),
+             optional('ext'),
+             field('name', $.identifier),
+             ':',
+             field('type', $._type),
              field('parameters', $.parameter_list),
              field('body',   $.block)
          )),
@@ -32,16 +35,12 @@ module.exports = grammar({
 
         parameter: $ => seq(
             $.variable_definition,
-            optional(choice(
-                seq(',', $.parameter),
-                $.parameter
-            )),
+            optional(',')
         ),
 
         parameter_list: $ => seq(
             '(',
-            // TODO: parameters
-            optional($.parameter),
+            repeat($.parameter),
             ')'
         ),
 
@@ -75,12 +74,40 @@ module.exports = grammar({
             '}'
         ),
 
-        _statement: $ => choice(
-            $._definition,
-            $._expression
+        argument: $ => seq(
+            $._expression,
+            optional(',')
         ),
 
-        if_stmt: $ => seq(
+        argument_list: $ => seq(
+            '(',
+            repeat($.argument),
+            ')'
+        ),
+
+        function_call: $ => prec(2, seq(
+            field('name', $.identifier),
+            $.argument_list,
+        )),
+
+        binary_expr: $ => choice(
+            prec.left(10, seq($._expression, '*', $._expression)),
+            prec.left(10, seq($._expression, '/', $._expression)),
+            prec.left(10, seq($._expression, '%', $._expression)),
+
+            prec.left(5, seq($._expression, '+', $._expression)),
+            prec.left(5, seq($._expression, '-', $._expression)),
+
+            prec.left(4, seq($._expression, '<<', $._expression)),
+            prec.left(4, seq($._expression, '>>', $._expression)),
+
+            prec.left(3, seq($._expression, '<', $._expression)),
+            prec.left(3, seq($._expression, '>', $._expression)),
+            prec.left(3, seq($._expression, '=', $._expression))
+
+        ),
+
+        if_expr: $ => seq(
             'if',
             field('condition', $._expression),
             field('then', $.block),
@@ -93,11 +120,13 @@ module.exports = grammar({
         ),
 
         _expression: $ => choice(
+            $.function_call,
+            $.if_expr,
+            $.binary_expr,
             $.dereference,
             $.identifier,
             $.number,
             // TODO: other kinds of expressions
-            // Function call?
             // Lambda def
             // Lambda call
         ),

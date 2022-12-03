@@ -11,12 +11,6 @@
     "devDependencies": {
         "tree-sitter-cli": "^0.20.7"
     },
-    "theme": {
-        "keyword": "purple",
-        "type": "blue",
-        "function": "yellow",
-        "variable": "yellow"
-    },
     "tree-sitter": [
         {
             "scope": "source.un",
