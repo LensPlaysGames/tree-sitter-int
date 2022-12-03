@@ -1,0 +1,25 @@
+#+title: FUNCompiler Tree Sitter Parser
+#+author: Lens
+#+description: A parser for the language FUNCompiler compiles based on tree sitter.
+#+created: <2022-12-03 Sat>
+
+** How to Build
+
+#+begin_src sh
+  tree-sitter generate
+  cmake -B bld
+  cmake --build bld
+#+end_src
+
+This will compile and link a shared library ~tree-sitter-un~ within the
+~bld~ subdirectory. This shared library must be copied into =~/.
+tree_sitter/bin=.
+
+# TODO: Add install target that automatically copies shared library.
+
+** How to Use in Emacs
+
+#+begin_src elisp
+(add-to-list 'tree-sitter-major-mode-language-alist '(un-mode . un))
+#+end_src
+
