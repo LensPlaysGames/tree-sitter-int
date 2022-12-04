@@ -10,6 +10,7 @@
 ** How to Build
 
 #+begin_src sh
+  npm install
   tree-sitter generate
   cmake -B bld
   cmake --build bld
