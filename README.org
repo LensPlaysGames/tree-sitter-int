@@ -55,3 +55,6 @@ least, the grammar's current best approximation of it. You can even
 navigate through it, highlight different portions, etc. Very
 educational!
 
+In the FUNCompiler repository, you will find a `un-ts-mode.el` which
+can be loaded and subsequently used for tree-sitter based syntax
+highlighting.

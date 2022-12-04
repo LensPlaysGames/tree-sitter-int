@@ -1,3 +1,5 @@
+;;; TODO: list all highlight variables used (the ones prefixed with @).
+
 ; Statements
 
 (function_definition

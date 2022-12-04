@@ -17,7 +17,7 @@ module.exports = grammar({
              field('name', $.identifier),
              ':',
              field('type', $._type),
-             field('parameters', $.parameter_list),
+             field('parameters', $._parameter_list),
              field('body',   $.block)
          )),
 
@@ -33,14 +33,14 @@ module.exports = grammar({
             )
         ),
 
-        parameter: $ => seq(
+        _parameter: $ => seq(
             $.variable_definition,
             optional(',')
         ),
 
-        parameter_list: $ => seq(
+        _parameter_list: $ => seq(
             '(',
-            repeat($.parameter),
+            repeat($._parameter),
             ')'
         ),
 
@@ -74,20 +74,20 @@ module.exports = grammar({
             '}'
         ),
 
-        argument: $ => seq(
+        _argument: $ => seq(
             $._expression,
             optional(',')
         ),
 
-        argument_list: $ => seq(
+        _argument_list: $ => seq(
             '(',
-            repeat($.argument),
+            repeat($._argument),
             ')'
         ),
 
         function_call: $ => prec(2, seq(
             field('name', $.identifier),
-            $.argument_list,
+            $._argument_list,
         )),
 
         binary_expr: $ => choice(
