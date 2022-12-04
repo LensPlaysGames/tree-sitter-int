@@ -1,23 +1,29 @@
 ;;; TODO: list all highlight variables used (the ones prefixed with @).
 
+(comment) @comment
+
 ; Statements
 
-(function_definition
+(stmt_function
   name: (identifier) @function)
 
-(variable_definition
+; TODO: What should extern variables be highlighted as?
+;(stmt_external
+;  name: (identifier) @function)
+
+(stmt_decl
   name: (identifier) @variable)
 
 ; Expressions
 
-(function_call
-  name: (identifier) @function)
+(expr_call
+  callee: (identifier) @function)
 
 ; Types
 
-(primitive_type) @type
-(pointer_type)   @type
-(array_type)     @type
+(type_primitive) @type
+(type_pointer)   @type
+(type_array)     @type
 
 ; Literals
 
@@ -50,15 +56,16 @@
   "/"
   "%"
 
-  "^"
   "&"
-  "|"
+
+  ;"^"
+  ;"|"
   "<<"
   ">>"
 
   "="
-  "&&"
-  "||"
+  ;"&&"
+  ;"||"
 
   ":"
   "@"
