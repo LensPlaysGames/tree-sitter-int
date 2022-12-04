@@ -1,0 +1,37 @@
+<file> ::= { <expression> }
+
+<expression> ::= <expr-func>
+               | <expr-decl>
+               | <expr-block>
+               | <expr-call>
+               | <expr-subs>
+               | <expr-prefix>
+               | <expr-binary>
+               | <expr-primary>
+
+<expr-func>    ::= <decl-start> <expr-lambda>
+<expr-extern>  ::= <decl-start> "ext" <type-function>
+<expr-decl>    ::= <decl-start> <type> [ "=" <expression> ]
+<expr-block>   ::= "{" { <expression> } "}"
+<expr-if>      ::= "if" <expression> <expr-block> [ "else" <expr-block> ]
+<expr-call>    ::= <expression> "(" [ <expression> { "," <expression> } ] ")"
+<expr-lambda>  ::= <type-function> <expr-block>
+<expr-subs>    ::= <expression> "[" <expression> "]"
+<expr-prefix>  ::= <prefix> <expression>
+<expr-binary>  ::= <expression> <binary> <expression>
+<expr-primary> ::= NUMBER | IDENTIFIER
+
+<decl-start> ::= IDENTIFIER ":"
+
+<type>           ::= <type-primitive>
+                   | <type-pointer>
+                   | <type-array>
+                   | <type-function>
+
+<type-primitive> ::= "integer" | "byte"
+<type-pointer>   ::= "@" <type>
+<type-array>     ::= <type> [ "[" <expression> "]" ]
+<type-function>  ::= <type> "(" [ <decl-start> <type> { "," <decl-start> <type>  } ] ")"
+
+<prefix> ::= /// All unary prefix operators
+<binary> ::= /// All binary operators

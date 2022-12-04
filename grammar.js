@@ -4,93 +4,149 @@ module.exports = grammar({
     rules: {
         source_file: $ => repeat($._statement),
 
+        _decl_start: $ => seq(field('name', $.identifier), ':'),
+
+        identifier: $ => /[a-zA-Z_]+/,
+
+        number: $ => /\d+/,
+
         _statement: $ => choice(
-            $.function_definition,
-            $.variable_definition,
+            $.expr_external,
+            $.expr_function,
+            $.expr_decl,
             $._expression
         ),
 
-        function_definition: $ => prec
-        (2,
-         seq(
-             optional('ext'),
-             field('name', $.identifier),
-             ':',
-             field('type', $._type),
-             field('parameters', $._parameter_list),
-             field('body',   $.block)
-         )),
+        _type: $ => prec(3, choice(
+            $.type_primitive,
+            $.type_pointer,
+            $.type_array,
+            $.type_function
+        )),
 
-        variable_definition: $ => seq(
-            field('name', $.identifier),
-            ':',
-            field('type', $._type),
-            optional(
-                seq(
-                    '=',
-                    $._expression
-                )
-            )
-        ),
+        _decl_type: $ => prec(3, choice(
+            $.type_primitive,
+            $.type_pointer,
+            $.type_array,
+        )),
 
-        _parameter: $ => seq(
-            $.variable_definition,
-            optional(',')
-        ),
-
-        _parameter_list: $ => seq(
-            '(',
-            repeat($._parameter),
-            ')'
-        ),
-
-        _type: $ => choice(
-            $.primitive_type,
-            $.array_type,
-            $.pointer_type,
-        ),
-
-        primitive_type: $ => choice(
+        type_primitive: $ => choice(
             'integer',
             'byte',
             'void'
         ),
 
-        array_type: $ => seq(
-            $._type,
-            '[',
-            $.number,
-            ']'
-        ),
-
-        pointer_type: $ => prec.left(seq(
-            '@',
-            $._type
+        type_pointer: $ => prec.left
+        (seq(
+            '@', $._type
         )),
 
-        block: $ => seq(
-            '{',
-            repeat($._statement),
-            '}'
+        type_array: $ => seq(
+            $._type, '[', $._expression,']'
         ),
 
-        _argument: $ => seq(
-            $._expression,
-            optional(',')
-        ),
-
-        _argument_list: $ => seq(
+        type_function: $ => seq(
+            $._type,
             '(',
-            repeat($._argument),
+            optional(
+                repeat(seq(
+                    $._decl_start,
+                    $._type,
+                ))
+            ),
             ')'
         ),
 
-        function_call: $ => prec(2, seq(
-            field('name', $.identifier),
-            $._argument_list,
+
+
+        _expression: $ => choice(
+            $.expr_block,
+            $.expr_if,
+            $.expr_call,
+            $.expr_lambda,
+            $.expr_subs,
+            $.expr_prefix,
+            $.expr_binary,
+            $._expr_primary
+        ),
+
+        expr_external: $ => seq(
+            $._decl_start,
+            'ext',
+            $.type_function
+        ),
+
+        expr_function: $ => prec(5, seq(
+            $._decl_start,
+            $.expr_lambda
         )),
 
-        binary_expr: $ => choice(
+        expr_decl: $ => seq(
+            $._decl_start,
+            choice(
+                seq($._decl_type,
+                    optional(
+                        seq(
+                            '=',
+                            $._expression
+                        )
+                    )),
+                seq($.type_function,
+                    '=',
+                    $._expression)
+            )
+        ),
+
+        expr_block: $ => seq(
+            '{',
+            repeat(
+                $._expression
+            ),
+            '}'
+        ),
+
+        expr_if: $ => seq(
+            'if',
+            field('condition', $._expression),
+            field('then', $.expr_block),
+            optional(
+                seq(
+                    'else',
+                    field('otherwise', $.expr_block)
+                )
+            )
+        ),
+
+        expr_call: $ => seq(
+            field('callee', $._expression),
+            '(',
+            repeat(
+                seq(
+                    $._expression,
+                    optional(',')
+                )
+            ),
+            ')'
+        ),
+
+        expr_lambda: $ => seq(
+            field('type', $.type_function),
+            field('body', $.expr_block)
+        ),
+
+        expr_subs: $ => seq(
+            $._expression,'[',$._expression,']'
+        ),
+
+        expr_prefix: $ => choice(
+            $.dereference
+        ),
+
+        dereference: $ => prec.left
+        (seq('@', $._expression)),
+
+
+        expr_binary: $ => choice(
             prec.left(10, seq($._expression, '*', $._expression)),
             prec.left(10, seq($._expression, '/', $._expression)),
             prec.left(10, seq($._expression, '%', $._expression)),
@@ -104,64 +160,11 @@ module.exports = grammar({
             prec.left(3, seq($._expression, '<', $._expression)),
             prec.left(3, seq($._expression, '>', $._expression)),
             prec.left(3, seq($._expression, '=', $._expression))
-
         ),
 
-        if_expr: $ => seq(
-            'if',
-            field('condition', $._expression),
-            field('then', $.block),
-            optional(
-                seq(
-                    'else',
-                    field('otherwise', $.block)
-                )
-            )
-        ),
-
-        _expression: $ => choice(
-            $.function_call,
-            $.if_expr,
-            $.binary_expr,
-            $.dereference,
-            $.identifier,
+        _expr_primary: $ => choice(
             $.number,
-            // TODO: other kinds of expressions
-            // Lambda def
-            // Lambda call
-        ),
-
-        dereference: $ => prec.left(seq(
-            '@',
             $.identifier
-        )),
-
-        identifier: $ => /[a-z]+/,
-
-        number: $ => /\d+/,
-
-
-        op_logical: $ => choice(
-            '=',
-            '<',
-            '>',
-            '||',
-            '&&'
-        ),
-
-        op_arithmetic: $ => choice(
-            '+',
-            '-',
-            '*',
-            '/'
-        ),
-
-        op_bitwise: $ => choice(
-            '|',
-            '&',
-            '^',
-            '<<',
-            '>>'
         )
     }
 });
