@@ -1,17 +1,28 @@
 <file> ::= { <expression> }
 
-<expression> ::= <expr-func>
-               | <expr-decl>
-               | <expr-block>
+<statement>  ::= <stmt-ext>
+               | <stmt-func>
+               | <stmt-decl>
+               | <expression>
+               | <comment>
+
+<comment> ::= ";" {";"} <anything> ["\r"] "\n"
+
+<stmt-func> ::= <decl-start> <expr-lambda>
+<stmt-ext>  ::= <decl-start> "ext" <type-function>
+
+/// TODO: only allow function type when `=` is present for conflict
+/// reduction. Not perfect.
+<stmt-decl> ::= <decl-start> <type> [ "=" <expression> ]
+
+<expression> ::= <expr-block>
                | <expr-call>
                | <expr-subs>
+               | <expr-if>
                | <expr-prefix>
                | <expr-binary>
                | <expr-primary>
 
-<expr-func>    ::= <decl-start> <expr-lambda>
-<expr-extern>  ::= <decl-start> "ext" <type-function>
-<expr-decl>    ::= <decl-start> <type> [ "=" <expression> ]
 <expr-block>   ::= "{" { <expression> } "}"
 <expr-if>      ::= "if" <expression> <expr-block> [ "else" <expr-block> ]
 <expr-call>    ::= <expression> "(" [ <expression> { "," <expression> } ] ")"
@@ -23,10 +34,12 @@
 
 <decl-start> ::= IDENTIFIER ":"
 
-<type>           ::= <type-primitive>
+<type>           ::= <decl-type>
+                   | <type-function>
+
+<decl-type>      ::= <type-primitive>
                    | <type-pointer>
                    | <type-array>
-                   | <type-function>
 
 <type-primitive> ::= "integer" | "byte"
 <type-pointer>   ::= "@" <type>

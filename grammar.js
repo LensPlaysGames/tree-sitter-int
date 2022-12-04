@@ -4,31 +4,36 @@ module.exports = grammar({
     rules: {
         source_file: $ => repeat($._statement),
 
+        extra: $ => $.comment,
+
+        comment: $ => /;+.*\r?\n/,
+
         _decl_start: $ => seq(field('name', $.identifier), ':'),
 
         identifier: $ => /[a-zA-Z_]+/,
 
         number: $ => /\d+/,
 
+
+
         _statement: $ => choice(
-            $.expr_external,
-            $.expr_function,
-            $.expr_decl,
-            $._expression
+            $.stmt_external,
+            $.stmt_function,
+            $.stmt_decl,
+            $._expression,
+            $.comment
         ),
 
-        _type: $ => prec(3, choice(
-            $.type_primitive,
-            $.type_pointer,
-            $.type_array,
+        _type: $ => choice(
+            $._decl_type,
             $.type_function
-        )),
+        ),
 
-        _decl_type: $ => prec(3, choice(
+        _decl_type: $ => choice(
             $.type_primitive,
             $.type_pointer,
-            $.type_array,
-        )),
+            $.type_array
+        ),
 
         type_primitive: $ => choice(
             'integer',
@@ -65,23 +70,24 @@ module.exports = grammar({
             $.expr_call,
             $.expr_lambda,
             $.expr_subs,
-            $.expr_prefix,
+            $.expr_assign,
+            $._expr_prefix,
             $.expr_binary,
             $._expr_primary
         ),
 
-        expr_external: $ => seq(
+        stmt_external: $ => seq(
             $._decl_start,
             'ext',
             $.type_function
         ),
 
-        expr_function: $ => prec(5, seq(
+        stmt_function: $ => prec(5, seq(
             $._decl_start,
             $.expr_lambda
         )),
 
-        expr_decl: $ => seq(
+        stmt_decl: $ => seq(
             $._decl_start,
             choice(
                 seq($._decl_type,
@@ -100,7 +106,7 @@ module.exports = grammar({
         expr_block: $ => seq(
             '{',
             repeat(
-                $._expression
+                $._statement
             ),
             '}'
         ),
@@ -138,13 +144,18 @@ module.exports = grammar({
             $._expression,'[',$._expression,']'
         ),
 
-        expr_prefix: $ => choice(
-            $.dereference
+        expr_assign: $ => prec.left(0, seq($._expression, ':=', $._expression)),
+
+        _expr_prefix: $ => choice(
+            $.dereference,
+            $.address_of
         ),
+
+        address_of: $ => prec.left
+        (seq('&', $._expression)),
 
         dereference: $ => prec.left
         (seq('@', $._expression)),
-
 
         expr_binary: $ => choice(
             prec.left(10, seq($._expression, '*', $._expression)),
