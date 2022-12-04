@@ -51,7 +51,7 @@ module.exports = grammar({
         ),
 
         type_function: $ => seq(
-            $._type,
+            field('return_type', $._type),
             '(',
             optional(
                 repeat(seq(
