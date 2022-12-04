@@ -3,6 +3,10 @@
 #+description: A parser for the language FUNCompiler compiles based on tree sitter.
 #+created: <2022-12-03 Sat>
 
+** Dependencies
+
+- [[https://github.com/tree-sitter/tree-sitter][tree-sitter]] and [[https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md#dependencies][it's dependencies]]
+
 ** How to Build
 
 #+begin_src sh
@@ -22,4 +26,7 @@ tree_sitter/bin=.
 #+begin_src elisp
 (add-to-list 'tree-sitter-major-mode-language-alist '(un-mode . un))
 #+end_src
+
+Then use tree-sitter as you would normally. Try
+`M-x tree-sitter-query-builder` while in a un-mode buffer!
 
