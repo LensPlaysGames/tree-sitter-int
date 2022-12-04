@@ -31,3 +31,27 @@ tree_sitter/bin=.
 Then use tree-sitter as you would normally. Try
 `M-x tree-sitter-query-builder` while in a un-mode buffer!
 
+*** Emacs 30+
+
+Also run the one above for older versions if you would like the old
+tree-sitter API to work (i.e. ~tree-sitter-query-builder~), as the
+legacy tree-sitter functions are still included.
+
+If ~treesit-extra-load-path~ is **not** nil, as in you have set it to
+another value and would like to retain it, use
+~(add-to-list 'treesit-extra-load-path "path/to/here/bld")~.
+
+Otherwise, if this is the only extra load path needed, use ~setq~.
+
+#+begin_src elisp
+  (setq treesit-extra-load-path '("path/to/here/bld"))
+#+end_src
+
+Then navigate to a buffer containing the language that FUNCompiler
+compiles source code and try ~treesit-explore-mode~. When it asks for a
+language, input ~un~ (short for unnamed, as name is TBD). A new buffer
+will open containing the AST for the contents of the buffer---or, at
+least, the grammar's current best approximation of it. You can even
+navigate through it, highlight different portions, etc. Very
+educational!
+
