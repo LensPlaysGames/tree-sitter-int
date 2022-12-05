@@ -5,7 +5,8 @@
 
 ** Dependencies
 
-- [[https://github.com/tree-sitter/tree-sitter][tree-sitter]] and [[https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md#dependencies][it's dependencies]]
+- A C compiler (we like [[https://gcc.gnu.org/][GCC]])
+- [[https://nodejs.org/en/][Node.js]] (sorry)
 
 ** How to Build
 
