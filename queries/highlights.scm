@@ -76,8 +76,3 @@
   "else"
   "ext"
 ] @keyword
-
-; Why doesn't this work?
-;(op_logical)    @operator
-;(op_arithmetic) @operator
-;(op_bitwise)    @operator

@@ -24,6 +24,35 @@ module.exports = grammar({
             $.comment
         ),
 
+        stmt_external: $ => seq(
+            $._decl_start,
+            'ext',
+            $.type_function
+        ),
+
+        stmt_function: $ => prec(5, seq(
+            $._decl_start,
+            $.expr_lambda
+        )),
+
+        stmt_decl: $ => seq(
+            $._decl_start,
+            choice(
+                seq($._decl_type,
+                    optional(
+                        seq(
+                            '=',
+                            $._expression
+                        )
+                    )),
+                seq($.type_function,
+                    '=',
+                    $._expression)
+            )
+        ),
+
+
+
         _type: $ => choice(
             $._decl_type,
             $.type_function
@@ -74,33 +103,6 @@ module.exports = grammar({
             $._expr_prefix,
             $.expr_binary,
             $._expr_primary
-        ),
-
-        stmt_external: $ => seq(
-            $._decl_start,
-            'ext',
-            $.type_function
-        ),
-
-        stmt_function: $ => prec(5, seq(
-            $._decl_start,
-            $.expr_lambda
-        )),
-
-        stmt_decl: $ => seq(
-            $._decl_start,
-            choice(
-                seq($._decl_type,
-                    optional(
-                        seq(
-                            '=',
-                            $._expression
-                        )
-                    )),
-                seq($.type_function,
-                    '=',
-                    $._expression)
-            )
         ),
 
         expr_block: $ => seq(
