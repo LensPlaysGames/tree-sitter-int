@@ -17,7 +17,10 @@
 ; Expressions
 
 (expr_call
-  callee: (identifier) @function)
+  callee: (variable) @function)
+
+; Variable Access
+(variable) @variable
 
 ; Types
 
@@ -64,10 +67,13 @@
   ">>"
 
   "="
+  "<"
+  ">"
   ;"&&"
   ;"||"
 
   ":"
+  ":="
   "@"
 ] @operator
 

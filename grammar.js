@@ -11,6 +11,7 @@ module.exports = grammar({
         _decl_start: $ => seq(field('name', $.identifier), ':'),
 
         identifier: $ => /[a-zA-Z_]+/,
+        variable:   $ => /[a-zA-Z_]+/,
 
         number: $ => /\d+/,
 
@@ -177,7 +178,7 @@ module.exports = grammar({
 
         _expr_primary: $ => choice(
             $.number,
-            $.identifier
+            $.variable,
         )
     }
 });
