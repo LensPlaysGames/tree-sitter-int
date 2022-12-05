@@ -81,4 +81,5 @@
   "if"
   "else"
   "ext"
+  "while"
 ] @keyword

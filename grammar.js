@@ -96,6 +96,7 @@ module.exports = grammar({
 
         _expression: $ => choice(
             $.expr_block,
+            $.expr_while,
             $.expr_if,
             $.expr_call,
             $.expr_lambda,
@@ -124,6 +125,12 @@ module.exports = grammar({
                     field('otherwise', $.expr_block)
                 )
             )
+        ),
+
+        expr_while: $ => seq(
+            'while',
+            field('condition', $._expression),
+            field('body', $.expr_block)
         ),
 
         expr_call: $ => seq(
