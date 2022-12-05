@@ -12,7 +12,7 @@
 
 #+begin_src sh
   npm install
-  tree-sitter generate
+  npx tree-sitter generate
   cmake -B bld
   cmake --build bld
 #+end_src
@@ -24,7 +24,7 @@ library could also be copied into =~/.tree_sitter/bin=.
 
 ** How to Use in Emacs
 
-If ~tree-sitter-major-mode-language-alist~ is **not** nil, as in you
+If ~tree-sitter-major-mode-language-alist~ is *not* nil, as in you
 have set it to another value and would like to retain it, use
 ~(add-to-list 'tree-sitter-major-mode-language-alist '(un-mode . un))~,
 and don't forget to also do this with ~un-ts-mode~.
@@ -42,7 +42,7 @@ Also run the one above for older versions if you would like the old
 tree-sitter API to work (i.e. ~tree-sitter-query-builder~), as the
 legacy tree-sitter functions are still included.
 
-If ~treesit-extra-load-path~ is **not** nil, as in you have set it to
+If ~treesit-extra-load-path~ is *not* nil, as in you have set it to
 another value and would like to retain it, use
 ~(add-to-list 'treesit-extra-load-path "path/to/here/bld")~.
 
