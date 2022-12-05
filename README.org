@@ -18,15 +18,19 @@
 #+end_src
 
 This will compile and link a shared library ~tree-sitter-un~ within the
-~bld~ subdirectory. This shared library must be copied into =~/.
-tree_sitter/bin=.
-
-# TODO: Add install target that automatically copies shared library.
+~bld~ subdirectory. It is recommended to add the =bld= path into
+~parser-directories~ in =~/tree-sitter/config.json=. This shared
+library could also be copied into =~/.tree_sitter/bin=.
 
 ** How to Use in Emacs
 
+If ~tree-sitter-major-mode-language-alist~ is **not** nil, as in you
+have set it to another value and would like to retain it, use
+~(add-to-list 'tree-sitter-major-mode-language-alist '(un-mode . un))~,
+and don't forget to also do this with ~un-ts-mode~.
+
 #+begin_src elisp
-(add-to-list 'tree-sitter-major-mode-language-alist '(un-mode . un))
+  (setq tree-sitter-major-mode-language-alist '((un-mode . un) (un-ts-mode . un)))
 #+end_src
 
 Then use tree-sitter as you would normally. Try
