@@ -158,7 +158,8 @@ module.exports = grammar({
 
         _expr_prefix: $ => choice(
             $.dereference,
-            $.address_of
+            $.address_of,
+            $.bitwise_not
         ),
 
         address_of: $ => prec.left
@@ -166,6 +167,9 @@ module.exports = grammar({
 
         dereference: $ => prec.left
         (seq('@', $._expression)),
+
+        bitwise_not: $ => prec.left
+        (seq('~', $._expression)),
 
         expr_binary: $ => choice(
             prec.left(10, seq($._expression, '*', $._expression)),
@@ -177,6 +181,8 @@ module.exports = grammar({
 
             prec.left(4, seq($._expression, '<<', $._expression)),
             prec.left(4, seq($._expression, '>>', $._expression)),
+            prec.left(4, seq($._expression, '&', $._expression)),
+            prec.left(4, seq($._expression, '|', $._expression)),
 
             prec.left(3, seq($._expression, '<', $._expression)),
             prec.left(3, seq($._expression, '>', $._expression)),
