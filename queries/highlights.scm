@@ -7,9 +7,13 @@
 (stmt_function
   name: (identifier) @function)
 
-; TODO: What should extern variables be highlighted as?
-;(stmt_external
-;  name: (identifier) @function)
+(stmt_external
+  name: (identifier) @function
+ (type_function))
+
+(stmt_decl
+  name: (identifier) @function
+  (type_function))
 
 (stmt_decl
   name: (identifier) @variable)
