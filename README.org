@@ -22,7 +22,7 @@ This will compile and link a shared library ~tree-sitter-un~ within the
 ~parser-directories~ in =~/tree-sitter/config.json=. This shared
 library could also be copied into =~/.tree_sitter/bin=.
 
-** How to Use in Emacs
+** How to Use in Emacs 29+
 
 If ~tree-sitter-major-mode-language-alist~ is *not* nil, as in you
 have set it to another value and would like to retain it, use
