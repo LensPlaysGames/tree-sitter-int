@@ -34,6 +34,8 @@
   "else"
   "ext"
   "while"
+  "struct"
+  "type"
 ] @keyword
 
 [

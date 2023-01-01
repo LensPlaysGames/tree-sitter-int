@@ -2,7 +2,8 @@ module.exports = grammar({
     name: "un",
 
     conflicts: $ => [
-        [$.expr_lambda, $._type_derived]
+        [$.expr_lambda, $._type_derived],
+        [$._type],
     ],
 
     rules: {
@@ -12,6 +13,7 @@ module.exports = grammar({
 
         _expression: $ => choice(
             $.expr_decl,
+            $.expr_struct,
             $.expr_if,
             $.expr_while,
             $.expr_block,
@@ -25,15 +27,14 @@ module.exports = grammar({
             $.comment
         ),
 
-        _decl_start: $ => seq(
-            field("name", $.identifier),
-            ":"
-        ),
-
         expr_decl: $ => prec(15,seq(
             $._decl_start,
             $._decl_rest
         )),
+        _decl_start: $ => seq(
+            field("name", $.identifier),
+            ":"
+        ),
         _decl_rest: $ => prec(2, choice(
             field("type", $._type),
             prec(3, seq(
@@ -50,6 +51,19 @@ module.exports = grammar({
                 field("type", $._type)
             )
         )),
+
+        expr_struct: $ => seq(
+            "struct",
+            field("name", $.identifier),
+            "{",
+            repeat1(
+                seq(
+                    $.expr_decl,
+                    optional(",")
+                )
+            ),
+            "}"
+        ),
 
         expr_if: $ => prec.right(seq(
             "if",
@@ -151,13 +165,15 @@ module.exports = grammar({
             $.identifier
         )),
 
-        _type: $ => choice(
-            $.type_base,
-            $.type_pointer,
-            $._type_derived
+        _type: $ => seq(
+            optional("type"),
+            choice(
+                $.type_base,
+                $.type_pointer,
+                $._type_derived
+            )
         ),
         type_base: $ => seq(
-            optional("type"),
             choice(
                 $.identifier,
                 "integer",
@@ -176,23 +192,19 @@ module.exports = grammar({
         type_array: $ => seq(
             $._type,
             "[",
-            $._expression,
+            optional($._expression),
             "]"
         ),
         type_function: $ => prec(10,seq(
             $._type,
             "(",
-            repeat(
-                seq(
-                    $.param_decl,
-                    optional(",")
-                )
-            ),
+            repeat($.param_decl),
             ")"
         )),
         param_decl: $ => seq(
             $._decl_start,
-            field("type", $._type)
+            field("type", $._type),
+            optional(",")
         ),
 
 

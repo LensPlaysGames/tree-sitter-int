@@ -1,8 +1,17 @@
-/// Top-level rule.
-<file>           ::= { <expression> }
+; Precedence is labeled using `prec` in a comment either preceding or
+; inline with a rule.
+; Associativity is explicitly stated either through comments of a
+; similar nature or through `.left` or `.right` following `prec`.
 
-/// Expression.
+; CONFLICTS: [<expr-lambda>, <type-derived>], [<type>]
+; Conflicts require GLR parsing.
+
+; Top-level rule.
+<file>           ::= { <expression> | <comment> }
+
+; Expression.
 <expression>     ::= <expr-decl>
+                   | <expr-struct>
                    | <expr-if>
                    | <expr-while>
                    | <expr-block>
@@ -15,35 +24,85 @@
                    | <expr-binary>
                    | <expr-primary>
 
-/// Declarations.
-<expr-decl>      ::= <decl-start> <decl-rest>
-<decl-start>     ::= IDENTIFIER ":"
-<decl-rest>      ::= <type-function> <expression>
-                   | <type> [ "=" <expression> ]
-                   | EXT <type-function>
+; Declarations.
 
-/// Other expressions.
-<expr-if>        ::= IF <expression> <expression> [ ELSE <expression> ]
-<expr-while>     ::= WHILE <expression> <expression>
+; prec 15
+<expr-decl>      ::= <decl-start> <decl-rest>
+
+<decl-start>     ::= IDENTIFIER ":"
+
+; prec 2
+<decl-rest>      ::= <type>
+                   | <type-function> <expression>
+                   | <type> "=" <expression> ; prec 3
+                   | "ext" <type>
+
+<expr-struct>    ::= "struct" IDENTIFIER "{" { <expr-decl> } "}"
+
+; Control Flow Expressions.
+
+; Right associative
+<expr-if>        ::= "if" <expression> <expression> [ "else" <expression> ]
+
+<expr-while>     ::= "while" <expression> <expression>
+
+; Other expressions.
 <expr-block>     ::= "{" { <expression> } "}"
 <expr-lambda>    ::= <type-function> <expression>
+; prec 15
 <expr-call>      ::= <expression> "(" { <expression> [ "," ] } ")"
-<expr-cast>      ::= <expression> AS <type>
+; prec 10
 <expr-subs>      ::= <expression> "[" <expression> "]"
+; prec 10
 <expr-paren>     ::= "(" <expression> ")"
-<expr-prefix>    ::= <prefix> <expression>
-<expr-binary>    ::= <expression> <binary> <expression>
-<expr-primary>   ::= NUMBER | IDENTIFIER
+<expr-prefix>    ::= "@" <expression> ; prec.left 10000
+                   | "&" <expression> ; prec.left 299
+                   | "!" <expression> ; prec.left 10000
+                   | "#" <expression> ; prec.left 10000
+                   | "-" <expression> ; prec.left 499
+                   | "~" <expression> ; prec.left 10000
 
-/// Types.
-<type>           ::= <type-base> | <type-pointer> | <type-derived>
-<type-pointer>   ::= "@" { "@" } ( IDENTIFIER | "(" <type> ")" )
-<type-base>      ::= IDENTIFIER
+<expr-binary>    ::= <expression> "." <expression> ; prec.left 1000000000
+                   | <expression> "as" <expression> ; prec.left 1000
+                   | <expression> "*" <expression> ; prec.left 600
+                   | <expression> "/" <expression> ; prec.left 600
+                   | <expression> "%" <expression> ; prec.left 600
+                   | <expression> "+" <expression> ; prec.left 500
+                   | <expression> "-" <expression> ; prec.left 500
+                   | <expression> "<<" <expression> ; prec.left 400
+                   | <expression> ">>" <expression> ; prec.left 400
+                   | <expression> "&" <expression> ; prec.left 300
+                   | <expression> "|" <expression> ; prec.left 300
+                   | <expression> "^" <expression> ; prec.left 300
+                   | <expression> "<" <expression> ; prec.left 200
+                   | <expression> ">" <expression> ; prec.left 200
+                   | <expression> "=" <expression> ; prec.left 200
+                   | <expression> "<=" <expression> ; prec.left 200
+                   | <expression> ">=" <expression> ; prec.left 200
+                   | <expression> "!=" <expression> ; prec.left 200
+                   | <expression> "&&" <expression> ; prec.left 50
+                   | <expression> "||" <expression> ; prec.left 50
+                   | <expression> ":=" <expression> ; prec.left 10
+
+<expr-primary>   ::= NUMBER | IDENTIFIER ; prec 5
+
+; Types.
+<type>           ::= [ "type" ] ( <type-base> | <type-pointer> | <type-derived> )
+
+ ; prec 1
+<type-pointer>   ::= "@" <type>
+
+<type-base>      ::= IDENTIFIER | "integer" | "byte" | "void"
 <type-derived>   ::= <type-array> | <type-function>
-<type-array>     ::= <type> "[" <expression> "]"
-<type-function>  ::= <type> "(" { <param-decl> [ "," ]  } ")"
-<param-decl>     ::= <decl-start> <type>
+<type-array>     ::= <type> "[" [ <expression> ] "]"
 
-/// Miscellaneous.
-<binary>         ::= /// All binary operators
-<prefix>         ::= /// All unary prefix operators
+ ; prec 10
+<type-function>  ::= <type> "(" { <param-decl>  } ")"
+
+<param-decl>     ::= <decl-start> <type> [ "," ]
+
+; Miscellaneous.
+; COMMENT        ::= /;+.*/
+; IDENTIFIER     ::= /[a-zA-Z]+[a-zA-Z0-9_]*/
+; NUMBER         ::= /[0-9]+/
+; keywords: if else while ext struct type
