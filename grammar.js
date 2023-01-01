@@ -79,8 +79,8 @@ module.exports = grammar({
 
         expr_while: $ => seq(
             "while",
-            $._expression,
-            $._expression
+            field("cond", $._expression),
+            field("body", $._expression)
         ),
 
         expr_block: $ => seq(
@@ -129,7 +129,7 @@ module.exports = grammar({
         ),
 
         expr_binary: $ => choice(
-            prec.left(1000000000, seq($._expression, ".", $._expression)),
+            prec.left(1000000000, seq($._expression, ".", $.identifier)),
             prec.left(1000, seq($._expression, "as", $._type)),
 
             prec.left(600, seq($._expression, "*", $._expression)),

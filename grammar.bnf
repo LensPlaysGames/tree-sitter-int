@@ -62,8 +62,8 @@
                    | "-" <expression> ; prec.left 499
                    | "~" <expression> ; prec.left 10000
 
-<expr-binary>    ::= <expression> "." <expression> ; prec.left 1000000000
-                   | <expression> "as" <expression> ; prec.left 1000
+<expr-binary>    ::= <expression> "." IDENTIFIER ; prec.left 1000000000
+                   | <expression> "as" <type> ; prec.left 1000
                    | <expression> "*" <expression> ; prec.left 600
                    | <expression> "/" <expression> ; prec.left 600
                    | <expression> "%" <expression> ; prec.left 600
