@@ -6,12 +6,10 @@
 
 (expr_decl name: (identifier) @function
            type: (type_function))
-(expr_decl name: (identifier) @variable)
 
 ; Expressions
 
-(expr_call
-  callee: (identifier) @function)
+(expr_call callee: (_) @function)
 
 ; Variable Access
 (identifier) @variable
@@ -19,6 +17,8 @@
 ; Types
 
 (type_base) @type
+; TODO: On command line, pointer type is highlighted as operator
+; instead of type.
 (type_pointer) @type
 (type_function) @type
 (type_array) @type
@@ -43,18 +43,20 @@
   "/"
   "%"
 
-  "&"
-
-  "^"
-  "~"
-  "&"
-  "|"
   "<<"
   ">>"
+  "&"
+  "|"
+  "^"
+  "~"
 
   "="
   "<"
   ">"
+  "!"
+  "<="
+  ">="
+  "!="
   "&&"
   "||"
 

@@ -107,10 +107,10 @@ module.exports = grammar({
 
         expr_prefix: $ => choice(
             prec.left(10000, seq("@", $._expression)),
-            prec.left(10000, seq("&", $._expression)),
-
+            prec.left(299,   seq("&", $._expression)),
+            prec.left(10000, seq("!", $._expression)),
             prec.left(10000, seq("#", $._expression)),
-            prec.left(10000, seq("-", $._expression)),
+            prec.left(499,   seq("-", $._expression)),
             prec.left(10000, seq("~", $._expression))
         ),
 
@@ -140,10 +140,10 @@ module.exports = grammar({
             prec.left(200, seq($._expression, ">=", $._expression)),
             prec.left(200, seq($._expression, "!=", $._expression)),
 
-            prec.left(100, seq($._expression, ":=", $._expression)),
-
             prec.left(50, seq($._expression, "&&", $._expression)),
-            prec.left(50, seq($._expression, "||", $._expression))
+            prec.left(50, seq($._expression, "||", $._expression)),
+
+            prec.left(10, seq($._expression, ":=", $._expression))
         ),
 
         _expr_primary: $ => prec(5,choice(
@@ -165,17 +165,10 @@ module.exports = grammar({
                 "void"
             )
         ),
-        type_pointer: $ => seq(
-            repeat1("@"),
-            choice(
-                $.identifier,
-                seq(
-                    "(",
-                    $._type,
-                    ")"
-                )
-            )
-        ),
+        type_pointer: $ => prec(1,seq(
+            "@",
+            $._type
+        )),
         _type_derived: $ => choice(
             $.type_array,
             $.type_function
