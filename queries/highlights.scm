@@ -4,33 +4,24 @@
 
 ; Statements
 
-(stmt_function
-  name: (identifier) @function)
-
-(stmt_external
-  name: (identifier) @function
- (type_function))
-
-(stmt_decl
-  name: (identifier) @function
-  (type_function))
-
-(stmt_decl
-  name: (identifier) @variable)
+(expr_decl name: (identifier) @function
+           type: (type_function))
+(expr_decl name: (identifier) @variable)
 
 ; Expressions
 
 (expr_call
-  callee: (variable) @function)
+  callee: (identifier) @function)
 
 ; Variable Access
-(variable) @variable
+(identifier) @variable
 
 ; Types
 
-(type_primitive) @type
-(type_pointer)   @type
-(type_array)     @type
+(type_base) @type
+(type_pointer) @type
+(type_function) @type
+(type_array) @type
 
 ; Literals
 
@@ -39,8 +30,42 @@
 ; Tokens
 
 [
+  "if"
+  "else"
+  "ext"
+  "while"
+] @keyword
+
+[
+  "+"
+  "-"
+  "*"
+  "/"
+  "%"
+
+  "&"
+
+  "^"
+  "~"
+  "&"
+  "|"
+  "<<"
+  ">>"
+
+  "="
+  "<"
+  ">"
+  "&&"
+  "||"
+
+  ":"
+  ":="
+  "@"
+] @operator
+
+[
 ; ";"
-;  "."
+  "."
   ","
   "<"
   ">"
@@ -55,37 +80,3 @@
   "{"
   "}"
 ]  @punctuation.bracket
-
-[
-  "+"
-  "-"
-  "*"
-  "/"
-  "%"
-
-  "&"
-
-  ;;"^"
-  "~"
-  "&"
-  "|"
-  "<<"
-  ">>"
-
-  "="
-  "<"
-  ">"
-  ;;"&&"
-  ;;"||"
-
-  ":"
-  ":="
-  "@"
-] @operator
-
-[
-  "if"
-  "else"
-  "ext"
-  "while"
-] @keyword

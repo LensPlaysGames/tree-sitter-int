@@ -1,197 +1,210 @@
 module.exports = grammar({
-    name: 'un',
+    name: "un",
+
+    conflicts: $ => [
+        [$.expr_lambda, $._type_derived]
+    ],
 
     rules: {
-        source_file: $ => repeat($._statement),
+        source_file: $ => repeat($._expression),
 
-        extra: $ => $.comment,
+        comment: $ => /;+.*/,
 
-        comment: $ => /;+.*\r?\n/,
-
-        _decl_start: $ => seq(field('name', $.identifier), ':'),
-
-        identifier: $ => /[a-zA-Z_]+/,
-        variable:   $ => /[a-zA-Z_]+/,
-
-        number: $ => /\d+/,
-
-
-
-        _statement: $ => choice(
-            $.stmt_external,
-            $.stmt_function,
-            $.stmt_decl,
-            $._expression,
+        _expression: $ => choice(
+            $.expr_decl,
+            $.expr_if,
+            $.expr_while,
+            $.expr_block,
+            $.expr_lambda,
+            $.expr_call,
+            $.expr_subscript,
+            $.expr_paren,
+            $.expr_prefix,
+            $.expr_binary,
+            $._expr_primary,
             $.comment
         ),
 
-        stmt_external: $ => seq(
-            $._decl_start,
-            'ext',
-            $.type_function
+        _decl_start: $ => seq(
+            field("name", $.identifier),
+            ":"
         ),
 
-        stmt_function: $ => prec(5, seq(
+        expr_decl: $ => prec(15,seq(
             $._decl_start,
-            $.expr_lambda
+            $._decl_rest
         )),
-
-        stmt_decl: $ => seq(
-            $._decl_start,
-            choice(
-                seq($._decl_type,
-                    optional(
-                        seq(
-                            '=',
-                            $._expression
-                        )
-                    )),
-                seq($.type_function,
-                    '=',
-                    $._expression)
-            )
-        ),
-
-
-
-        _type: $ => choice(
-            $._decl_type,
-            $.type_function
-        ),
-
-        _decl_type: $ => choice(
-            $.type_primitive,
-            $.type_pointer,
-            $.type_array
-        ),
-
-        type_primitive: $ => choice(
-            'integer',
-            'byte',
-            'void'
-        ),
-
-        type_pointer: $ => prec.left
-        (seq(
-            '@', $._type
-        )),
-
-        type_array: $ => seq(
-            $._type, '[', $._expression,']'
-        ),
-
-        type_function: $ => seq(
-            field('return_type', $._type),
-            '(',
-            optional(
-                repeat(seq(
-                    $._decl_start,
-                    $._type,
-                ))
+        _decl_rest: $ => prec(2, choice(
+            field("type", $._type),
+            prec(3, seq(
+                field("type", $._type),
+                "=",
+                field("init", $._expression)
+            )),
+            seq(
+                field("type", $.type_function),
+                field("body", $._expression)
             ),
-            ')'
-        ),
+            seq(
+                "ext",
+                field("type", $._type)
+            )
+        )),
 
+        expr_if: $ => prec.right(seq(
+            "if",
+            field("cond", $._expression),
+            field("then", $._expression),
+            optional(
+                seq(
+                    "else",
+                    field("otherwise", $._expression)
+                )
+            )
+        )),
 
-
-        _expression: $ => choice(
-            $.expr_block,
-            $.expr_while,
-            $.expr_if,
-            $.expr_call,
-            $.expr_lambda,
-            $.expr_subs,
-            $.expr_assign,
-            $._expr_prefix,
-            $.expr_binary,
-            $._expr_primary
+        expr_while: $ => seq(
+            "while",
+            $._expression,
+            $._expression
         ),
 
         expr_block: $ => seq(
-            '{',
-            repeat(
-                $._statement
-            ),
-            '}'
-        ),
-
-        expr_if: $ => seq(
-            'if',
-            field('condition', $._expression),
-            field('then', $.expr_block),
-            optional(
-                seq(
-                    'else',
-                    field('otherwise', $.expr_block)
-                )
-            )
-        ),
-
-        expr_while: $ => seq(
-            'while',
-            field('condition', $._expression),
-            field('body', $.expr_block)
-        ),
-
-        expr_call: $ => seq(
-            field('callee', $._expression),
-            '(',
-            repeat(
-                seq(
-                    $._expression,
-                    optional(',')
-                )
-            ),
-            ')'
+            "{",
+            repeat($._expression),
+            "}"
         ),
 
         expr_lambda: $ => seq(
-            field('type', $.type_function),
-            field('body', $.expr_block)
+            $.type_function,
+            $._expression,
         ),
 
-        expr_subs: $ => seq(
-            $._expression,'[',$._expression,']'
+        expr_call: $ => prec(15,seq(
+            field("callee", $._expression),
+            "(",
+            repeat(
+                seq(
+                    $._expression,
+                    optional(",")
+                )
+            ),
+            ")"
+        )),
+
+        expr_subscript: $ => prec(10,seq(
+            $._expression,
+            "[",
+            $._expression,
+            "]"
+        )),
+
+        expr_paren: $ => prec(10,seq(
+            "(",
+            $._expression,
+            ")"
+        )),
+
+        expr_prefix: $ => choice(
+            prec.left(10000, seq("@", $._expression)),
+            prec.left(10000, seq("&", $._expression)),
+
+            prec.left(10000, seq("#", $._expression)),
+            prec.left(10000, seq("-", $._expression)),
+            prec.left(10000, seq("~", $._expression))
         ),
-
-        expr_assign: $ => prec.left(0, seq($._expression, ':=', $._expression)),
-
-        _expr_prefix: $ => choice(
-            $.dereference,
-            $.address_of,
-            $.bitwise_not
-        ),
-
-        address_of: $ => prec.left
-        (seq('&', $._expression)),
-
-        dereference: $ => prec.left
-        (seq('@', $._expression)),
-
-        bitwise_not: $ => prec.left
-        (seq('~', $._expression)),
 
         expr_binary: $ => choice(
-            prec.left(10, seq($._expression, '*', $._expression)),
-            prec.left(10, seq($._expression, '/', $._expression)),
-            prec.left(10, seq($._expression, '%', $._expression)),
+            prec.left(1000000000, seq($._expression, ".", $._expression)),
+            prec.left(1000, seq($._expression, "as", $._type)),
 
-            prec.left(5, seq($._expression, '+', $._expression)),
-            prec.left(5, seq($._expression, '-', $._expression)),
+            prec.left(600, seq($._expression, "*", $._expression)),
+            prec.left(600, seq($._expression, "/", $._expression)),
+            prec.left(600, seq($._expression, "%", $._expression)),
 
-            prec.left(4, seq($._expression, '<<', $._expression)),
-            prec.left(4, seq($._expression, '>>', $._expression)),
-            prec.left(4, seq($._expression, '&', $._expression)),
-            prec.left(4, seq($._expression, '|', $._expression)),
+            prec.left(500, seq($._expression, "+", $._expression)),
+            prec.left(500, seq($._expression, "-", $._expression)),
 
-            prec.left(3, seq($._expression, '<', $._expression)),
-            prec.left(3, seq($._expression, '>', $._expression)),
-            prec.left(3, seq($._expression, '=', $._expression))
+            prec.left(400, seq($._expression, "<<", $._expression)),
+            prec.left(400, seq($._expression, ">>", $._expression)),
+
+            prec.left(300, seq($._expression, "&", $._expression)),
+            prec.left(300, seq($._expression, "|", $._expression)),
+            prec.left(300, seq($._expression, "^", $._expression)),
+
+
+            prec.left(200, seq($._expression, "<", $._expression)),
+            prec.left(200, seq($._expression, ">", $._expression)),
+            prec.left(200, seq($._expression, "=", $._expression)),
+            prec.left(200, seq($._expression, "<=", $._expression)),
+            prec.left(200, seq($._expression, ">=", $._expression)),
+            prec.left(200, seq($._expression, "!=", $._expression)),
+
+            prec.left(100, seq($._expression, ":=", $._expression)),
+
+            prec.left(50, seq($._expression, "&&", $._expression)),
+            prec.left(50, seq($._expression, "||", $._expression))
         ),
 
-        _expr_primary: $ => choice(
+        _expr_primary: $ => prec(5,choice(
             $.number,
-            $.variable,
-        )
+            $.identifier
+        )),
+
+        _type: $ => choice(
+            $.type_base,
+            $.type_pointer,
+            $._type_derived
+        ),
+        type_base: $ => seq(
+            optional("type"),
+            choice(
+                $.identifier,
+                "integer",
+                "byte",
+                "void"
+            )
+        ),
+        type_pointer: $ => seq(
+            repeat1("@"),
+            choice(
+                $.identifier,
+                seq(
+                    "(",
+                    $._type,
+                    ")"
+                )
+            )
+        ),
+        _type_derived: $ => choice(
+            $.type_array,
+            $.type_function
+        ),
+        type_array: $ => seq(
+            $._type,
+            "[",
+            $._expression,
+            "]"
+        ),
+        type_function: $ => prec(10,seq(
+            $._type,
+            "(",
+            repeat(
+                seq(
+                    $.param_decl,
+                    optional(",")
+                )
+            ),
+            ")"
+        )),
+        param_decl: $ => seq(
+            $._decl_start,
+            field("type", $._type)
+        ),
+
+
+
+        identifier: $ => /[a-zA-Z]+[a-zA-Z0-9_]*/,
+        number: $ => /[0-9]+/
     }
 });
