@@ -3,26 +3,62 @@
 #+description: A parser for the language FUNCompiler compiles based on tree sitter.
 #+created: <2022-12-03 Sat>
 
-** Dependencies
+** Build =libtree-sitter-un= Shared Object
 
 - A C compiler (we like [[https://gcc.gnu.org/][GCC]])
-- [[https://nodejs.org/en/][Node.js]] (sorry)
+- [[https://cmake.org/download/][CMake]] [optional]
 
-** How to Build
-
+A CMake build script is pre-provided; use that to generate a build
+system, then invoke it.
 #+begin_src sh
-  npm install
-  npx tree-sitter generate
   cmake -B bld
   cmake --build bld
 #+end_src
 
-This will compile and link a shared library ~tree-sitter-un~ within the
-~bld~ subdirectory. It is recommended to add the =bld= path into
-~parser-directories~ in =~/tree-sitter/config.json=. This shared
-library could also be copied into =~/.tree_sitter/bin=.
+This will compile and link a shared library =tree-sitter-un= within the
+=bld= subdirectory. It is recommended to copy it into
+=~/.tree_sitter/bin= or alike. For the tree-sitter CLI to look in the
+right place, alter =parser-directories= in =~/tree-sitter/config.json=. See [[https://tree-sitter.github.io/tree-sitter/syntax-highlighting#per-user-configuration][official docs]] for more info.
 
-** How to Use in Emacs 29+
+Alternatively, use a compiler (and lots of flags) to build it. Make
+sure to change the output file name to the proper extension based on
+your platform.
+
+#+begin_src sh
+  gcc -O3 -march=native src/parser.c -shared -flto -fPIC -o tree-sitter-bash.so -lm -lpthread -Wall -Wextra
+#+end_src
+
+** Generate Parser from =grammar.js= *optional
+
+*** Dependencies
+
+- [[https://tree-sitter.github.io/tree-sitter/creating-parsers#installation][tree-sitter CLI]]
+
+NOTE: Only one of the following needs to be completed.
+
+*** Node.js
+
+#+begin_src sh
+  npm install
+  npx tree-sitter generate
+#+end_src
+
+*** Cargo
+
+NOTE: Assuming you've built tree-sitter from source using =Cargo= and have successfully installed the CLI executable somewhere in your PATH environment variable, you can now just generate the grammar.
+
+#+begin_src sh
+  tree-sitter generate
+#+end_src
+
+*** What now?
+
+Now that you have successfully generated the parser, the =src= directory has been populated with =C= source code representing the grammar, which can be built into a shared library and used by many different programs. See instructions above on building the shared object.
+
+** How to Use in Emacs 29/30+
+
+NOTE: Emacs changes every day, so the info here may be out of date.
+Consult the documentation within Emacs for best results.
 
 If ~tree-sitter-major-mode-language-alist~ is *not* nil, as in you
 have set it to another value and would like to retain it, use
