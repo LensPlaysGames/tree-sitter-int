@@ -25,12 +25,10 @@ sure to change the output file name to the proper extension based on
 your platform.
 
 #+begin_src sh
-  gcc -O3 -march=native src/parser.c -shared -flto -fPIC -o tree-sitter-bash.so -lm -lpthread -Wall -Wextra
+  gcc -O3 -march=native src/parser.c -shared -flto -fPIC -o tree-sitter-un.so -lm -lpthread -Wall -Wextra
 #+end_src
 
 ** Generate Parser from =grammar.js= *optional
-
-*** Dependencies
 
 - [[https://tree-sitter.github.io/tree-sitter/creating-parsers#installation][tree-sitter CLI]]
 
