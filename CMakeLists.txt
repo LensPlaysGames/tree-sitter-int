@@ -6,7 +6,6 @@ add_library(
   SHARED
   src/parser.c
 )
-
 target_include_directories(
   tree-sitter-un
   PUBLIC
