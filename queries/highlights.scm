@@ -2,85 +2,87 @@
 
 (comment) @comment
 
-; Statements
+;; Statements
 
 (expr_decl name: (identifier) @function
            type: (type_function))
 
-; Expressions
+;; Expressions
 
 (expr_call callee: (_) @function)
 
-; Variable Access
+;; Variable Access
 (identifier) @variable
 
-; Types
+;; Types
 
 (type_base) @type
-; TODO: On command line, pointer type is highlighted as operator
-; instead of type.
+;; TODO: On command line, pointer type is highlighted as operator
+;; instead of type.
 (type_pointer) @type
 (type_function) @type
 (type_array) @type
 
-; Literals
+;; Literals
 
 (number) @number
 
-; Tokens
+;; Tokens
 
 [
-  "if"
-  "else"
-  "ext"
-  "while"
-  "struct"
-  "type"
-] @keyword
+ "if"
+ "else"
+ "ext"
+ "while"
+ ;;"struct"
+ ;;"type"
+ ] @keyword
 
 [
-  "+"
-  "-"
-  "*"
-  "/"
-  "%"
+ "+"
+ "-"
+ "*"
+ "/"
+ "%"
 
-  "<<"
-  ">>"
-  "&"
-  "|"
-  "^"
-  "~"
+ "<<"
+ ">>"
+ "&"
+ "|"
+ "^"
+ "~"
 
-  "="
-  "<"
-  ">"
-  "!"
-  "<="
-  ">="
-  "!="
-  "&&"
-  "||"
+ "="
+ "<"
+ ">"
+ "!"
+ "<="
+ ">="
+ "!="
+ "&&"
+ "||"
 
-  ":"
-  ":="
-  "@"
-] @operator
+ ":"
+ ":="
+ "@"
 
-[
-; ";"
-  "."
-  ","
-  "<"
-  ">"
-  "@"
-] @punctuation.delimiter
+ "as"
+ ] @operator
 
 [
-  "("
-  ")"
-  "["
-  "]"
-  "{"
-  "}"
-]  @punctuation.bracket
+ ;;";"
+ "."
+ ","
+ "<"
+ ">"
+ "@"
+ ] @punctuation.delimiter
+
+[
+ "("
+ ")"
+ "["
+ "]"
+ "{"
+ "}"
+ ]  @punctuation.bracket
