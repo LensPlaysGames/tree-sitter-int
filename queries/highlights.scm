@@ -26,6 +26,7 @@
 ;; Literals
 
 (number) @number
+(string) @string
 
 ;; Tokens
 
@@ -64,6 +65,7 @@
 
  ":"
  ":="
+ "::"
  "@"
 
  "as"

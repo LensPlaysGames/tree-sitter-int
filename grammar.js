@@ -157,11 +157,13 @@ module.exports = grammar({
             prec.left(50, seq($._expression, "&&", $._expression)),
             prec.left(50, seq($._expression, "||", $._expression)),
 
-            prec.left(10, seq($._expression, ":=", $._expression))
+            prec.right(10, seq($._expression, ":=", $._expression)),
+            prec.right(10, seq($._expression, "::", $._expression))
         ),
 
         _expr_primary: $ => prec(5,choice(
             $.number,
+            $.string,
             $.identifier
         )),
 
@@ -210,6 +212,7 @@ module.exports = grammar({
 
 
         identifier: $ => /[a-zA-Z]+[a-zA-Z0-9_]*/,
-        number: $ => /[0-9]+/
+        number: $ => /[0-9]+/,
+        string: $ => /"[^.]*?"/g // Should be `"[^]*?"` but tree sitter doesn't support that "unclosed character class"
     }
 });

@@ -83,6 +83,7 @@
                    | <expression> "&&" <expression> ; prec.left 50
                    | <expression> "||" <expression> ; prec.left 50
                    | <expression> ":=" <expression> ; prec.left 10
+                   | <expression> "::" <expression> ; prec.left 10
 
 <expr-primary>   ::= NUMBER | IDENTIFIER ; prec 5
 
