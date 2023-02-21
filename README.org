@@ -1,9 +1,9 @@
-#+title: FUNCompiler Tree Sitter Parser
+#+title: Intercept Tree Sitter Parser
 #+author: Lens
-#+description: A parser for the language FUNCompiler compiles based on tree sitter.
+#+description: A parser for Intercept based on tree sitter.
 #+created: <2022-12-03 Sat>
 
-** Build =libtree-sitter-un= Shared Object
+** Build =libtree-sitter-int= Shared Object
 
 - A C compiler (we like [[https://gcc.gnu.org/][GCC]])
 - [[https://cmake.org/download/][CMake]] [optional]
@@ -15,7 +15,7 @@ system, then invoke it.
   cmake --build bld
 #+end_src
 
-This will compile and link a shared library =tree-sitter-un= within the
+This will compile and link a shared library =tree-sitter-int= within the
 =bld= subdirectory. It is recommended to copy it into
 =~/.tree_sitter/bin= or alike. For the tree-sitter CLI to look in the
 right place, alter =parser-directories= in =~/tree-sitter/config.json=. See [[https://tree-sitter.github.io/tree-sitter/syntax-highlighting#per-user-configuration][official docs]] for more info.
@@ -25,7 +25,7 @@ sure to change the output file name to the proper extension based on
 your platform.
 
 #+begin_src sh
-  gcc -O3 -march=native src/parser.c -shared -flto -fPIC -o tree-sitter-un.so -lm -lpthread -Wall -Wextra
+  gcc -O3 -march=native src/parser.c -shared -flto -fPIC -o tree-sitter-int.so -lm -lpthread -Wall -Wextra
 #+end_src
 
 ** Generate Parser from =grammar.js= *optional
@@ -60,15 +60,15 @@ Consult the documentation within Emacs for best results.
 
 If ~tree-sitter-major-mode-language-alist~ is *not* nil, as in you
 have set it to another value and would like to retain it, use
-~(add-to-list 'tree-sitter-major-mode-language-alist '(un-mode . un))~,
-and don't forget to also do this with ~un-ts-mode~.
+~(add-to-list 'tree-sitter-major-mode-language-alist '(int-mode . int))~,
+and don't forget to also do this with ~int-ts-mode~.
 
 #+begin_src elisp
-  (setq tree-sitter-major-mode-language-alist '((un-mode . un) (un-ts-mode . un)))
+  (setq tree-sitter-major-mode-language-alist '((int-mode . int) (int-ts-mode . int)))
 #+end_src
 
 Then use tree-sitter as you would normally. Try
-=M-x tree-sitter-query-builder= while in a un-mode buffer!
+=M-x tree-sitter-query-builder= while in a int-mode buffer!
 
 *** Emacs 30+
 
@@ -86,14 +86,13 @@ Otherwise, if this is the only extra load path needed, use ~setq~.
   (setq treesit-extra-load-path '("path/to/here/bld"))
 #+end_src
 
-Then navigate to a buffer containing the language that FUNCompiler
-compiles source code and try ~treesit-explore-mode~. When it asks for a
-language, input ~un~ (short for unnamed, as name is TBD). A new buffer
-will open containing the AST for the contents of the buffer---or, at
-least, the grammar's current best approximation of it. You can even
-navigate through it, highlight different portions, etc. Very
-educational!
+Then navigate to a buffer containing Intercept source code and try
+~treesit-explore-mode~. When it asks for a language, input ~int~ (short
+for =Intercept=). A new buffer will open containing the AST for the
+contents of the buffer---or, at least, the grammar's current best
+approximation of it. You can even navigate through it, highlight
+different portions, etc. Very educational!
 
-In the FUNCompiler repository, you will find a =un-ts-mode.el= which
-can be loaded and subsequently used for tree-sitter based syntax
-highlighting.
+In the Intercept repository, you will find a =int-ts-mode.el= in the
+editor subdirectory which can be loaded and subsequently used for
+tree-sitter based syntax highlighting.
