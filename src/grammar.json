@@ -1,5 +1,5 @@
 {
-  "name": "un",
+  "name": "int",
   "rules": {
     "source_file": {
       "type": "REPEAT",

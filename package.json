@@ -1,7 +1,7 @@
 {
-  "name": "tree-sitter-un",
-  "version": "2.0.0",
-  "description": "Tree sitter parser for language that FUNCompiler compiles",
+  "name": "tree-sitter-int",
+  "version": "3.0.0",
+  "description": "Tree sitter parser for Intercept",
   "main": "bindings/node",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,9 +14,9 @@
   },
   "tree-sitter": [
     {
-      "scope": "source.un",
+      "scope": "source.int",
       "file-types": [
-        "un"
+        "int"
       ]
     }
   ],
@@ -24,16 +24,16 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LensPlaysGames/tree-sitter-un.git"
+    "url": "git+https://github.com/LensPlaysGames/tree-sitter-int.git"
   },
   "keywords": [
     "tree-sitter",
     "parser",
-    "grammar",
-    "funcompiler"
+    "Intercept",
+    "grammar"
   ],
   "bugs": {
-    "url": "https://github.com/LensPlaysGames/tree-sitter-un/issues"
+    "url": "https://github.com/LensPlaysGames/tree-sitter-int/issues"
   },
-  "homepage": "https://github.com/LensPlaysGames/tree-sitter-un#readme"
+  "homepage": "https://github.com/LensPlaysGames/tree-sitter-int#readme"
 }
