@@ -21,7 +21,6 @@
     }
   ],
   "gypfile": true,
-  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LensPlaysGames/tree-sitter-int.git"
