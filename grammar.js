@@ -214,6 +214,6 @@ module.exports = grammar({
 
         identifier: $ => /[a-zA-Z]+[a-zA-Z0-9_]*/,
         number: $ => /[0-9]+/,
-        string: $ => /"[^.]*?"/g // Should be `"[^]*?"` but tree sitter doesn't support that "unclosed character class"
+        string: $ => /"[^"]*?"/g
     }
 });

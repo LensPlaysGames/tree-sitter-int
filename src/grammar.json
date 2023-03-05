@@ -1228,7 +1228,7 @@
     },
     "string": {
       "type": "PATTERN",
-      "value": "\"[^.]*?\""
+      "value": "\"[^\"]*?\""
     }
   },
   "extras": [

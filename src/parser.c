@@ -1267,8 +1267,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 4:
       if (lookahead == '"') ADVANCE(100);
-      if (lookahead != 0 &&
-          lookahead != '.') ADVANCE(4);
+      if (lookahead != 0) ADVANCE(4);
       END_STATE();
     case 5:
       if (lookahead == '(') ADVANCE(35);
@@ -1893,9 +1892,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 100:
       ACCEPT_TOKEN(sym_string);
-      if (lookahead == '"') ADVANCE(100);
-      if (lookahead != 0 &&
-          lookahead != '.') ADVANCE(4);
       END_STATE();
     default:
       return false;
