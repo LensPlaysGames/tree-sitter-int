@@ -11,7 +11,7 @@
 
 ; Expression.
 <expression>     ::= <expr-decl>
-                   | <expr-struct>
+                   | <expr-struct-decl>
                    | <expr-if>
                    | <expr-while>
                    | <expr-block>
@@ -37,7 +37,7 @@
                    | <type> "=" <expression> ; prec 3
                    | "ext" <type>
 
-<expr-struct>    ::= "struct" IDENTIFIER "{" { <expr-decl> } "}"
+<expr-struct-decl> ::= IDENTIFIER ":>" "type" "{" { <expr-decl> } "}"
 
 ; Control Flow Expressions.
 
@@ -84,6 +84,7 @@
                    | <expression> "||" <expression> ; prec.left 50
                    | <expression> ":=" <expression> ; prec.left 10
                    | <expression> "::" <expression> ; prec.left 10
+                   | <expression> ":>" <expression> ; prec.left 10
 
 <expr-primary>   ::= NUMBER | IDENTIFIER ; prec 5
 

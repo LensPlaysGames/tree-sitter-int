@@ -2,12 +2,12 @@
 
 (comment) @comment
 
-;; Statements
+;; Expressions
 
 (expr_decl name: (identifier) @function
            type: (type_function))
 
-;; Expressions
+(expr_struct_decl typename: (identifier) @type)
 
 (expr_call callee: (_) @function)
 
@@ -35,8 +35,7 @@
  "else"
  "ext"
  "while"
- ;;"struct"
- ;;"type"
+ "type"
  ] @keyword
 
 [
@@ -66,13 +65,13 @@
  ":"
  ":="
  "::"
+ ":>"
  "@"
 
  "as"
  ] @operator
 
 [
- ;;";"
  "."
  ","
  "<"

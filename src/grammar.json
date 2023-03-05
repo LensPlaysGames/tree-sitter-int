@@ -21,7 +21,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "expr_struct"
+          "name": "expr_struct_decl"
         },
         {
           "type": "SYMBOL",
@@ -187,16 +187,12 @@
         ]
       }
     },
-    "expr_struct": {
+    "expr_struct_decl": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "struct"
-        },
-        {
           "type": "FIELD",
-          "name": "name",
+          "name": "typename",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -204,10 +200,18 @@
         },
         {
           "type": "STRING",
+          "value": ":>"
+        },
+        {
+          "type": "STRING",
+          "value": "type"
+        },
+        {
+          "type": "STRING",
           "value": "{"
         },
         {
-          "type": "REPEAT1",
+          "type": "REPEAT",
           "content": {
             "type": "SEQ",
             "members": [

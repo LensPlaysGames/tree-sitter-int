@@ -13,7 +13,7 @@ module.exports = grammar({
 
         _expression: $ => choice(
             $.expr_decl,
-            $.expr_struct,
+            $.expr_struct_decl,
             $.expr_if,
             $.expr_while,
             $.expr_block,
@@ -52,11 +52,12 @@ module.exports = grammar({
             )
         )),
 
-        expr_struct: $ => seq(
-            "struct",
-            field("name", $.identifier),
+        expr_struct_decl: $ => seq(
+            field("typename", $.identifier),
+            ":>",
+            "type",
             "{",
-            repeat1(
+            repeat(
                 seq(
                     $.expr_decl,
                     optional(",")
