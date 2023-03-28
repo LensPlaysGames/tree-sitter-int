@@ -16,6 +16,7 @@ module.exports = grammar({
             $.expr_struct_decl,
             $.expr_if,
             $.expr_while,
+            $.expr_for,
             $.expr_block,
             $.expr_lambda,
             $.expr_call,
@@ -82,6 +83,17 @@ module.exports = grammar({
             "while",
             field("cond", $._expression),
             field("body", $._expression)
+        ),
+
+        expr_for: $ => seq(
+            "for",
+            field("init", $._expression),
+            optional(","),
+            field("cond", $._expression),
+            optional(","),
+            field("iter", $._expression),
+            optional(","),
+            field("body", $._expression),
         ),
 
         expr_block: $ => seq(

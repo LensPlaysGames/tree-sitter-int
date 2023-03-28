@@ -14,6 +14,7 @@
                    | <expr-struct-decl>
                    | <expr-if>
                    | <expr-while>
+                   | <expr-for>
                    | <expr-block>
                    | <expr-lambda>
                    | <expr-call>
@@ -46,6 +47,7 @@
 <expr-if>        ::= "if" <expression> <expression> [ "else" <expression> ]
 
 <expr-while>     ::= "while" <expression> <expression>
+<expr-for>       ::= "for" <expression> [ "," ] <expression> [ "," ] <expression> [ "," ] <expression>
 
 ; Other expressions.
 <expr-block>     ::= "{" { <expression> } "}"

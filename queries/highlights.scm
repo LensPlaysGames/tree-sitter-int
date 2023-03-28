@@ -36,6 +36,7 @@
  "else"
  "ext"
  "while"
+ "for"
  "type"
  ] @keyword
 

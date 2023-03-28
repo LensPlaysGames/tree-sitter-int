@@ -28,6 +28,10 @@
           "named": true
         },
         {
+          "type": "expr_for",
+          "named": true
+        },
+        {
           "type": "expr_if",
           "named": true
         },
@@ -119,6 +123,10 @@
           "named": true
         },
         {
+          "type": "expr_for",
+          "named": true
+        },
+        {
           "type": "expr_if",
           "named": true
         },
@@ -190,6 +198,10 @@
             "named": true
           },
           {
+            "type": "expr_for",
+            "named": true
+          },
+          {
             "type": "expr_if",
             "named": true
           },
@@ -254,6 +266,10 @@
         },
         {
           "type": "expr_decl",
+          "named": true
+        },
+        {
+          "type": "expr_for",
           "named": true
         },
         {
@@ -328,6 +344,10 @@
             "named": true
           },
           {
+            "type": "expr_for",
+            "named": true
+          },
+          {
             "type": "expr_if",
             "named": true
           },
@@ -391,6 +411,10 @@
           },
           {
             "type": "expr_decl",
+            "named": true
+          },
+          {
+            "type": "expr_for",
             "named": true
           },
           {
@@ -478,6 +502,292 @@
     }
   },
   {
+    "type": "expr_for",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          },
+          {
+            "type": "expr_binary",
+            "named": true
+          },
+          {
+            "type": "expr_block",
+            "named": true
+          },
+          {
+            "type": "expr_call",
+            "named": true
+          },
+          {
+            "type": "expr_decl",
+            "named": true
+          },
+          {
+            "type": "expr_for",
+            "named": true
+          },
+          {
+            "type": "expr_if",
+            "named": true
+          },
+          {
+            "type": "expr_lambda",
+            "named": true
+          },
+          {
+            "type": "expr_paren",
+            "named": true
+          },
+          {
+            "type": "expr_prefix",
+            "named": true
+          },
+          {
+            "type": "expr_struct_decl",
+            "named": true
+          },
+          {
+            "type": "expr_subscript",
+            "named": true
+          },
+          {
+            "type": "expr_while",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "cond": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          },
+          {
+            "type": "expr_binary",
+            "named": true
+          },
+          {
+            "type": "expr_block",
+            "named": true
+          },
+          {
+            "type": "expr_call",
+            "named": true
+          },
+          {
+            "type": "expr_decl",
+            "named": true
+          },
+          {
+            "type": "expr_for",
+            "named": true
+          },
+          {
+            "type": "expr_if",
+            "named": true
+          },
+          {
+            "type": "expr_lambda",
+            "named": true
+          },
+          {
+            "type": "expr_paren",
+            "named": true
+          },
+          {
+            "type": "expr_prefix",
+            "named": true
+          },
+          {
+            "type": "expr_struct_decl",
+            "named": true
+          },
+          {
+            "type": "expr_subscript",
+            "named": true
+          },
+          {
+            "type": "expr_while",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "init": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          },
+          {
+            "type": "expr_binary",
+            "named": true
+          },
+          {
+            "type": "expr_block",
+            "named": true
+          },
+          {
+            "type": "expr_call",
+            "named": true
+          },
+          {
+            "type": "expr_decl",
+            "named": true
+          },
+          {
+            "type": "expr_for",
+            "named": true
+          },
+          {
+            "type": "expr_if",
+            "named": true
+          },
+          {
+            "type": "expr_lambda",
+            "named": true
+          },
+          {
+            "type": "expr_paren",
+            "named": true
+          },
+          {
+            "type": "expr_prefix",
+            "named": true
+          },
+          {
+            "type": "expr_struct_decl",
+            "named": true
+          },
+          {
+            "type": "expr_subscript",
+            "named": true
+          },
+          {
+            "type": "expr_while",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "iter": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          },
+          {
+            "type": "expr_binary",
+            "named": true
+          },
+          {
+            "type": "expr_block",
+            "named": true
+          },
+          {
+            "type": "expr_call",
+            "named": true
+          },
+          {
+            "type": "expr_decl",
+            "named": true
+          },
+          {
+            "type": "expr_for",
+            "named": true
+          },
+          {
+            "type": "expr_if",
+            "named": true
+          },
+          {
+            "type": "expr_lambda",
+            "named": true
+          },
+          {
+            "type": "expr_paren",
+            "named": true
+          },
+          {
+            "type": "expr_prefix",
+            "named": true
+          },
+          {
+            "type": "expr_struct_decl",
+            "named": true
+          },
+          {
+            "type": "expr_subscript",
+            "named": true
+          },
+          {
+            "type": "expr_while",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "expr_if",
     "named": true,
     "fields": {
@@ -503,6 +813,10 @@
           },
           {
             "type": "expr_decl",
+            "named": true
+          },
+          {
+            "type": "expr_for",
             "named": true
           },
           {
@@ -572,6 +886,10 @@
             "named": true
           },
           {
+            "type": "expr_for",
+            "named": true
+          },
+          {
             "type": "expr_if",
             "named": true
           },
@@ -635,6 +953,10 @@
           },
           {
             "type": "expr_decl",
+            "named": true
+          },
+          {
+            "type": "expr_for",
             "named": true
           },
           {
@@ -707,6 +1029,10 @@
         },
         {
           "type": "expr_decl",
+          "named": true
+        },
+        {
+          "type": "expr_for",
           "named": true
         },
         {
@@ -785,6 +1111,10 @@
           "named": true
         },
         {
+          "type": "expr_for",
+          "named": true
+        },
+        {
           "type": "expr_if",
           "named": true
         },
@@ -853,6 +1183,10 @@
         },
         {
           "type": "expr_decl",
+          "named": true
+        },
+        {
+          "type": "expr_for",
           "named": true
         },
         {
@@ -953,6 +1287,10 @@
           "named": true
         },
         {
+          "type": "expr_for",
+          "named": true
+        },
+        {
           "type": "expr_if",
           "named": true
         },
@@ -1024,6 +1362,10 @@
             "named": true
           },
           {
+            "type": "expr_for",
+            "named": true
+          },
+          {
             "type": "expr_if",
             "named": true
           },
@@ -1087,6 +1429,10 @@
           },
           {
             "type": "expr_decl",
+            "named": true
+          },
+          {
+            "type": "expr_for",
             "named": true
           },
           {
@@ -1208,6 +1554,10 @@
           "named": true
         },
         {
+          "type": "expr_for",
+          "named": true
+        },
+        {
           "type": "expr_if",
           "named": true
         },
@@ -1276,6 +1626,10 @@
         },
         {
           "type": "expr_decl",
+          "named": true
+        },
+        {
+          "type": "expr_for",
           "named": true
         },
         {
@@ -1591,6 +1945,10 @@
   },
   {
     "type": "ext",
+    "named": false
+  },
+  {
+    "type": "for",
     "named": false
   },
   {
