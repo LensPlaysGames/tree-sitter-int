@@ -4,13 +4,22 @@
     "source_file": {
       "type": "REPEAT",
       "content": {
-        "type": "SYMBOL",
-        "name": "_expression"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "STRING",
+            "value": ";"
+          }
+        ]
       }
     },
     "comment": {
       "type": "PATTERN",
-      "value": ";+.*"
+      "value": ";;+.*"
     },
     "_expression": {
       "type": "CHOICE",

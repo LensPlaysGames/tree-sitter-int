@@ -7,7 +7,7 @@
 ; Conflicts require GLR parsing.
 
 ; Top-level rule.
-<file>           ::= { <expression> | <comment> }
+<file>           ::= { <expression> | ";" }
 
 ; Expression.
 <expression>     ::= <expr-decl>
@@ -23,6 +23,7 @@
                    | <expr-prefix>
                    | <expr-binary>
                    | <expr-primary>
+                   | <comment>
 
 ; Declarations.
 

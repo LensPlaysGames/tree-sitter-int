@@ -7,9 +7,9 @@ module.exports = grammar({
     ],
 
     rules: {
-        source_file: $ => repeat($._expression),
+        source_file: $ => repeat(choice($._expression, ";")),
 
-        comment: $ => /;+.*/,
+        comment: $ => /;;+.*/,
 
         _expression: $ => choice(
             $.expr_decl,
