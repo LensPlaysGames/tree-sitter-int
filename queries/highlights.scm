@@ -17,9 +17,10 @@
 ;; Types
 
 (type_base) @type
-;; TODO: On command line, pointer type is highlighted as operator
-;; instead of type.
+;; TODO: On command line, pointer and reference types are highlighted
+;; as an operator instead of a type.
 (type_pointer) @type
+(type_reference) @type
 (type_function) @type
 (type_array) @type
 

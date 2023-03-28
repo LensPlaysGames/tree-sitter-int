@@ -90,10 +90,13 @@
 <expr-primary>   ::= NUMBER | IDENTIFIER ; prec 5
 
 ; Types.
-<type>           ::= [ "type" ] ( <type-base> | <type-pointer> | <type-derived> )
+<type>           ::= [ "type" ] ( <type-base> | <type-pointer> | <type-reference> | <type-derived> )
 
  ; prec 1
 <type-pointer>   ::= "@" <type>
+
+ ; prec 2
+<type-reference>   ::= "&" <type>
 
 <type-base>      ::= IDENTIFIER | "integer" | "byte" | "void"
 <type-derived>   ::= <type-array> | <type-function>

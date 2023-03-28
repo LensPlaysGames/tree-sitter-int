@@ -173,19 +173,22 @@ module.exports = grammar({
             choice(
                 $.type_base,
                 $.type_pointer,
+                $.type_reference,
                 $._type_derived
             )
         ),
-        type_base: $ => seq(
-            choice(
-                $.identifier,
-                "integer",
-                "byte",
-                "void"
-            )
+        type_base: $ => choice(
+            $.identifier,
+            "integer",
+            "byte",
+            "void"
         ),
         type_pointer: $ => prec(1,seq(
             "@",
+            $._type
+        )),
+        type_reference: $ => prec(2,seq(
+            "&",
             $._type
         )),
         _type_derived: $ => choice(

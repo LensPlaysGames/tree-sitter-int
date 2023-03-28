@@ -82,6 +82,10 @@
         {
           "type": "type_pointer",
           "named": true
+        },
+        {
+          "type": "type_reference",
+          "named": true
         }
       ]
     }
@@ -463,6 +467,10 @@
           },
           {
             "type": "type_pointer",
+            "named": true
+          },
+          {
+            "type": "type_reference",
             "named": true
           }
         ]
@@ -1162,6 +1170,10 @@
           {
             "type": "type_pointer",
             "named": true
+          },
+          {
+            "type": "type_reference",
+            "named": true
           }
         ]
       }
@@ -1321,6 +1333,10 @@
         {
           "type": "type_pointer",
           "named": true
+        },
+        {
+          "type": "type_reference",
+          "named": true
         }
       ]
     }
@@ -1367,6 +1383,10 @@
         {
           "type": "type_pointer",
           "named": true
+        },
+        {
+          "type": "type_reference",
+          "named": true
         }
       ]
     }
@@ -1393,6 +1413,41 @@
         },
         {
           "type": "type_pointer",
+          "named": true
+        },
+        {
+          "type": "type_reference",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "type_array",
+          "named": true
+        },
+        {
+          "type": "type_base",
+          "named": true
+        },
+        {
+          "type": "type_function",
+          "named": true
+        },
+        {
+          "type": "type_pointer",
+          "named": true
+        },
+        {
+          "type": "type_reference",
           "named": true
         }
       ]
