@@ -1,5 +1,25 @@
 [
   {
+    "type": "attr_func",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "attr_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "expr_binary",
     "named": true,
     "fields": {},
@@ -69,6 +89,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "type_arbitrary_int",
           "named": true
         },
         {
@@ -470,12 +494,12 @@
         ]
       },
       "type": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "type",
-            "named": false
+            "type": "type_arbitrary_int",
+            "named": true
           },
           {
             "type": "type_array",
@@ -1252,6 +1276,10 @@
       "required": false,
       "types": [
         {
+          "type": "attr_type",
+          "named": true
+        },
+        {
           "type": "expr_decl",
           "named": true
         }
@@ -1494,12 +1522,12 @@
         ]
       },
       "type": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "type",
-            "named": false
+            "type": "type_arbitrary_int",
+            "named": true
           },
           {
             "type": "type_array",
@@ -1673,6 +1701,10 @@
           "named": true
         },
         {
+          "type": "type_arbitrary_int",
+          "named": true
+        },
+        {
           "type": "type_array",
           "named": true
         },
@@ -1719,7 +1751,15 @@
       "required": true,
       "types": [
         {
+          "type": "attr_func",
+          "named": true
+        },
+        {
           "type": "param_decl",
+          "named": true
+        },
+        {
+          "type": "type_arbitrary_int",
           "named": true
         },
         {
@@ -1754,6 +1794,10 @@
       "required": true,
       "types": [
         {
+          "type": "type_arbitrary_int",
+          "named": true
+        },
+        {
           "type": "type_array",
           "named": true
         },
@@ -1784,6 +1828,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "type_arbitrary_int",
+          "named": true
+        },
         {
           "type": "type_array",
           "named": true
@@ -1928,6 +1976,10 @@
     "named": false
   },
   {
+    "type": "alignas",
+    "named": false
+  },
+  {
     "type": "as",
     "named": false
   },
@@ -1938,6 +1990,10 @@
   {
     "type": "comment",
     "named": true
+  },
+  {
+    "type": "discardable",
+    "named": false
   },
   {
     "type": "else",
@@ -1964,6 +2020,10 @@
     "named": false
   },
   {
+    "type": "nomangle",
+    "named": false
+  },
+  {
     "type": "number",
     "named": true
   },
@@ -1974,6 +2034,10 @@
   {
     "type": "type",
     "named": false
+  },
+  {
+    "type": "type_arbitrary_int",
+    "named": true
   },
   {
     "type": "void",

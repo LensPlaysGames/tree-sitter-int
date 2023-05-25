@@ -57,6 +57,9 @@ module.exports = grammar({
             field("typename", $.identifier),
             ":>",
             "type",
+            repeat(
+                $.attr_type
+            ),
             "{",
             repeat(
                 seq(
@@ -65,6 +68,10 @@ module.exports = grammar({
                 )
             ),
             "}"
+        ),
+
+        attr_type: $ => choice(
+            seq("alignas", $.number)
         ),
 
         expr_if: $ => prec.right(seq(
@@ -180,14 +187,12 @@ module.exports = grammar({
             $.identifier
         )),
 
-        _type: $ => seq(
-            optional("type"),
-            choice(
-                $.type_base,
-                $.type_pointer,
-                $.type_reference,
-                $._type_derived
-            )
+        _type: $ => choice(
+            $.type_base,
+            $.type_pointer,
+            $.type_reference,
+            $.type_arbitrary_int,
+            $._type_derived
         ),
         type_base: $ => choice(
             $.identifier,
@@ -203,6 +208,7 @@ module.exports = grammar({
             "&",
             $._type
         )),
+        type_arbitrary_int: $ => /[isu][0-9]+/,
         _type_derived: $ => choice(
             $.type_array,
             $.type_function
@@ -217,8 +223,13 @@ module.exports = grammar({
             $._type,
             "(",
             repeat($.param_decl),
-            ")"
+            ")",
+            repeat($.attr_func)
         )),
+        attr_func: $ => choice(
+            "discardable",
+            "nomangle"
+        ),
         param_decl: $ => seq(
             $._decl_start,
             field("type", $._type),

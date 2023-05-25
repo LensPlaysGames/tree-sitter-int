@@ -21,6 +21,7 @@
 ;; as an operator instead of a type.
 (type_pointer) @type
 (type_reference) @type
+(type_arbitrary_int) @type
 (type_function) @type
 (type_array) @type
 
@@ -32,12 +33,20 @@
 ;; Tokens
 
 [
+ ;; Keywords
  "if"
  "else"
  "ext"
  "while"
  "for"
  "type"
+
+ ;; Type attributes
+ "alignas"
+
+ ;; Function attributes
+ "discardable"
+ "nomangle"
  ] @keyword
 
 [

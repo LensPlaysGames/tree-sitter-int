@@ -39,7 +39,8 @@
                    | <type> "=" <expression> ; prec 3
                    | "ext" <type>
 
-<expr-struct-decl> ::= IDENTIFIER ":>" "type" "{" { <expr-decl> } "}"
+<expr-struct-decl> ::= IDENTIFIER ":>" "type" { <type-attributes> } "{" { <expr-decl> } "}"
+<type-attributes>  ::= ALIGNAS NUMBER
 
 ; Control Flow Expressions.
 
@@ -92,7 +93,7 @@
 <expr-primary>   ::= NUMBER | IDENTIFIER ; prec 5
 
 ; Types.
-<type>           ::= [ "type" ] ( <type-base> | <type-pointer> | <type-reference> | <type-derived> )
+<type>           ::= ( <type-base> | <type-pointer> | <type-reference> | <type-derived> | <type-arbitrary-int> )
 
  ; prec 1
 <type-pointer>   ::= "@" <type>
@@ -103,9 +104,11 @@
 <type-base>      ::= IDENTIFIER | "integer" | "byte" | "void"
 <type-derived>   ::= <type-array> | <type-function>
 <type-array>     ::= <type> "[" [ <expression> ] "]"
+<type-arbitrary-int> ::= ( "i" | "s" | "u" ) NUMBER
 
  ; prec 10
-<type-function>  ::= <type> "(" { <param-decl>  } ")"
+<type-function>       ::= <type> "(" { <param-decl>  } ")" { <function-attributes> }
+<function-attributes> ::= NOMANGLE | DISCARDABLE
 
 <param-decl>     ::= <decl-start> <type> [ "," ]
 
