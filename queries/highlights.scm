@@ -40,6 +40,9 @@
  "while"
  "for"
  "type"
+ "macro"
+ "emits"
+ "endmacro"
 
  ;; Type attributes
  "alignas"

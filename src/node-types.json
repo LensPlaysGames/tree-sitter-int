@@ -20,6 +20,11 @@
     }
   },
   {
+    "type": "escaped_identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "expr_binary",
     "named": true,
     "fields": {},
@@ -29,6 +34,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "escaped_identifier",
           "named": true
         },
         {
@@ -81,6 +90,14 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "macro_arg",
+          "named": true
+        },
+        {
+          "type": "macro_def",
           "named": true
         },
         {
@@ -131,6 +148,10 @@
           "named": true
         },
         {
+          "type": "escaped_identifier",
+          "named": true
+        },
+        {
           "type": "expr_binary",
           "named": true
         },
@@ -180,6 +201,14 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "macro_arg",
+          "named": true
+        },
+        {
+          "type": "macro_def",
           "named": true
         },
         {
@@ -206,6 +235,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -258,6 +291,14 @@
             "named": true
           },
           {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -274,6 +315,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "escaped_identifier",
           "named": true
         },
         {
@@ -329,6 +374,14 @@
           "named": true
         },
         {
+          "type": "macro_arg",
+          "named": true
+        },
+        {
+          "type": "macro_def",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -352,6 +405,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -401,6 +458,14 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -422,6 +487,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -471,6 +540,14 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -538,6 +615,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -587,6 +668,14 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -608,6 +697,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -657,6 +750,14 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -678,6 +779,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -727,6 +832,14 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -748,6 +861,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -797,6 +914,14 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -824,6 +949,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -873,6 +1002,14 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -894,6 +1031,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -943,6 +1084,14 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -964,6 +1113,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -1013,6 +1166,14 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -1037,6 +1198,10 @@
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "escaped_identifier",
           "named": true
         },
         {
@@ -1089,6 +1254,14 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "macro_arg",
+          "named": true
+        },
+        {
+          "type": "macro_def",
           "named": true
         },
         {
@@ -1119,6 +1292,10 @@
           "named": true
         },
         {
+          "type": "escaped_identifier",
+          "named": true
+        },
+        {
           "type": "expr_binary",
           "named": true
         },
@@ -1168,6 +1345,14 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "macro_arg",
+          "named": true
+        },
+        {
+          "type": "macro_def",
           "named": true
         },
         {
@@ -1194,6 +1379,10 @@
           "named": true
         },
         {
+          "type": "escaped_identifier",
+          "named": true
+        },
+        {
           "type": "expr_binary",
           "named": true
         },
@@ -1243,6 +1432,14 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "macro_arg",
+          "named": true
+        },
+        {
+          "type": "macro_def",
           "named": true
         },
         {
@@ -1299,6 +1496,10 @@
           "named": true
         },
         {
+          "type": "escaped_identifier",
+          "named": true
+        },
+        {
           "type": "expr_binary",
           "named": true
         },
@@ -1351,6 +1552,14 @@
           "named": true
         },
         {
+          "type": "macro_arg",
+          "named": true
+        },
+        {
+          "type": "macro_def",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -1374,6 +1583,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -1423,6 +1636,14 @@
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
             "named": true
           },
           {
@@ -1444,6 +1665,10 @@
             "named": true
           },
           {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
             "type": "expr_binary",
             "named": true
           },
@@ -1496,11 +1721,207 @@
             "named": true
           },
           {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
           {
             "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "macro_def",
+    "named": true,
+    "fields": {
+      "definition": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "comment",
+            "named": true
+          },
+          {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
+            "type": "expr_binary",
+            "named": true
+          },
+          {
+            "type": "expr_block",
+            "named": true
+          },
+          {
+            "type": "expr_call",
+            "named": true
+          },
+          {
+            "type": "expr_decl",
+            "named": true
+          },
+          {
+            "type": "expr_for",
+            "named": true
+          },
+          {
+            "type": "expr_if",
+            "named": true
+          },
+          {
+            "type": "expr_lambda",
+            "named": true
+          },
+          {
+            "type": "expr_paren",
+            "named": true
+          },
+          {
+            "type": "expr_prefix",
+            "named": true
+          },
+          {
+            "type": "expr_struct_decl",
+            "named": true
+          },
+          {
+            "type": "expr_subscript",
+            "named": true
+          },
+          {
+            "type": "expr_while",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "expansion": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "comment",
+            "named": true
+          },
+          {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
+            "type": "expr_binary",
+            "named": true
+          },
+          {
+            "type": "expr_block",
+            "named": true
+          },
+          {
+            "type": "expr_call",
+            "named": true
+          },
+          {
+            "type": "expr_decl",
+            "named": true
+          },
+          {
+            "type": "expr_for",
+            "named": true
+          },
+          {
+            "type": "expr_if",
+            "named": true
+          },
+          {
+            "type": "expr_lambda",
+            "named": true
+          },
+          {
+            "type": "expr_paren",
+            "named": true
+          },
+          {
+            "type": "expr_prefix",
+            "named": true
+          },
+          {
+            "type": "expr_struct_decl",
+            "named": true
+          },
+          {
+            "type": "expr_subscript",
+            "named": true
+          },
+          {
+            "type": "expr_while",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "macro_arg",
+            "named": true
+          },
+          {
+            "type": "macro_def",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -1566,6 +1987,10 @@
           "named": true
         },
         {
+          "type": "escaped_identifier",
+          "named": true
+        },
+        {
           "type": "expr_binary",
           "named": true
         },
@@ -1615,6 +2040,14 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "macro_arg",
+          "named": true
+        },
+        {
+          "type": "macro_def",
           "named": true
         },
         {
@@ -1641,6 +2074,10 @@
           "named": true
         },
         {
+          "type": "escaped_identifier",
+          "named": true
+        },
+        {
           "type": "expr_binary",
           "named": true
         },
@@ -1690,6 +2127,14 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "macro_arg",
+          "named": true
+        },
+        {
+          "type": "macro_def",
           "named": true
         },
         {
@@ -2000,6 +2445,14 @@
     "named": false
   },
   {
+    "type": "emits",
+    "named": false
+  },
+  {
+    "type": "endmacro",
+    "named": false
+  },
+  {
     "type": "ext",
     "named": false
   },
@@ -2018,6 +2471,14 @@
   {
     "type": "integer",
     "named": false
+  },
+  {
+    "type": "macro",
+    "named": false
+  },
+  {
+    "type": "macro_arg",
+    "named": true
   },
   {
     "type": "nomangle",

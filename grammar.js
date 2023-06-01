@@ -25,7 +25,19 @@ module.exports = grammar({
             $.expr_prefix,
             $.expr_binary,
             $._expr_primary,
+            $.escaped_identifier,
+            $.macro_def,
+            $.macro_arg,
             $.comment
+        ),
+
+        macro_def: $ => seq(
+            "macro",
+            field("name", $.identifier),
+            field("definition", repeat(choice($._expression, ";"))),
+            "emits",
+            field("expansion", repeat(choice($._expression, ";"))),
+            "endmacro"
         ),
 
         expr_decl: $ => prec(15,seq(
@@ -237,8 +249,11 @@ module.exports = grammar({
         ),
 
 
-
-        identifier: $ => /[a-zA-Z]+[a-zA-Z0-9_]*/,
+        macro_arg: $ => /\$[a-zA-Z_][a-zA-Z0-9_]*/,
+        escaped_identifier: $ => prec(2,
+            /\\[a-zA-Z_][a-zA-Z0-9_]*/
+        ),
+        identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
         number: $ => /[0-9]+/,
         string: $ => /"[^"]*?"/g
     }
