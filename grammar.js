@@ -254,7 +254,7 @@ module.exports = grammar({
             /\\[a-zA-Z_][a-zA-Z0-9_]*/
         ),
         identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
-        number: $ => /[0-9]+/,
+        number: $ => /[0]*?[bBxX]?[0-9]+/,
         string: $ => /"[^"]*?"/g
     }
 });

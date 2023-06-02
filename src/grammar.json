@@ -1455,7 +1455,7 @@
     },
     "number": {
       "type": "PATTERN",
-      "value": "[0-9]+"
+      "value": "[0]*?[bBxX]?[0-9]+"
     },
     "string": {
       "type": "PATTERN",
