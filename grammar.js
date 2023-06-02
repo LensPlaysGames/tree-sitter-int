@@ -46,7 +46,7 @@ module.exports = grammar({
         )),
         _decl_start: $ => seq(
             field("name", $.identifier),
-            ":"
+            choice(":", "::")
         ),
         _decl_rest: $ => prec(2, choice(
             field("type", $._type),
@@ -55,6 +55,7 @@ module.exports = grammar({
                 "=",
                 field("init", $._expression)
             )),
+            prec(3, field("init", $._expression)),
             seq(
                 field("type", $.type_function),
                 field("body", $._expression)
@@ -189,8 +190,7 @@ module.exports = grammar({
             prec.left(50, seq($._expression, "&&", $._expression)),
             prec.left(50, seq($._expression, "||", $._expression)),
 
-            prec.right(10, seq($._expression, ":=", $._expression)),
-            prec.right(10, seq($._expression, "::", $._expression))
+            prec.right(10, seq($._expression, ":=", $._expression))
         ),
 
         _expr_primary: $ => prec(5,choice(

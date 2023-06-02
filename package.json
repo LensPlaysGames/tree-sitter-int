@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-int",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Tree sitter parser for Intercept",
   "main": "bindings/node",
   "scripts": {
