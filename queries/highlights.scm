@@ -4,6 +4,8 @@
 
 ;; Expressions
 
+(macro_arg) @function.builtin
+
 (expr_decl name: (identifier) @function
            type: (type_function))
 
@@ -41,6 +43,7 @@
  "for"
  "type"
  "macro"
+ "defines"
  "emits"
  "endmacro"
 

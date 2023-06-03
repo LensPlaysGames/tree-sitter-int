@@ -1916,6 +1916,20 @@
           }
         ]
       },
+      "gensym_defs": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -2435,6 +2449,10 @@
   {
     "type": "comment",
     "named": true
+  },
+  {
+    "type": "defines",
+    "named": false
   },
   {
     "type": "discardable",

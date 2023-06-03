@@ -35,6 +35,14 @@ module.exports = grammar({
             "macro",
             field("name", $.identifier),
             field("definition", repeat(choice($._expression, ";"))),
+            optional(seq(
+                "defines",
+                field("gensym_defs",
+                    repeat(seq(
+                        $.identifier,
+                        optional(",")
+                    )))
+            )),
             "emits",
             field("expansion", repeat(choice($._expression, ";"))),
             "endmacro"
