@@ -53,6 +53,10 @@
  ;; Function attributes
  "discardable"
  "nomangle"
+
+ "module"
+ "import"
+ "export"
  ] @keyword
 
 [

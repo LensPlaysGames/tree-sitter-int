@@ -101,6 +101,14 @@
           "named": true
         },
         {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
+          "type": "module_import",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -212,6 +220,14 @@
           "named": true
         },
         {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
+          "type": "module_import",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -299,6 +315,14 @@
             "named": true
           },
           {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -379,6 +403,14 @@
         },
         {
           "type": "macro_def",
+          "named": true
+        },
+        {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
+          "type": "module_import",
           "named": true
         },
         {
@@ -469,6 +501,14 @@
             "named": true
           },
           {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -548,6 +588,14 @@
           },
           {
             "type": "macro_def",
+            "named": true
+          },
+          {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
             "named": true
           },
           {
@@ -679,6 +727,14 @@
             "named": true
           },
           {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -758,6 +814,14 @@
           },
           {
             "type": "macro_def",
+            "named": true
+          },
+          {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
             "named": true
           },
           {
@@ -843,6 +907,14 @@
             "named": true
           },
           {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -922,6 +994,14 @@
           },
           {
             "type": "macro_def",
+            "named": true
+          },
+          {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
             "named": true
           },
           {
@@ -1013,6 +1093,14 @@
             "named": true
           },
           {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -1095,6 +1183,14 @@
             "named": true
           },
           {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -1174,6 +1270,14 @@
           },
           {
             "type": "macro_def",
+            "named": true
+          },
+          {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
             "named": true
           },
           {
@@ -1262,6 +1366,14 @@
         },
         {
           "type": "macro_def",
+          "named": true
+        },
+        {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
+          "type": "module_import",
           "named": true
         },
         {
@@ -1356,6 +1468,14 @@
           "named": true
         },
         {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
+          "type": "module_import",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -1440,6 +1560,14 @@
         },
         {
           "type": "macro_def",
+          "named": true
+        },
+        {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
+          "type": "module_import",
           "named": true
         },
         {
@@ -1560,6 +1688,14 @@
           "named": true
         },
         {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
+          "type": "module_import",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -1647,6 +1783,14 @@
             "named": true
           },
           {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -1726,6 +1870,14 @@
           },
           {
             "type": "macro_def",
+            "named": true
+          },
+          {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
             "named": true
           },
           {
@@ -1821,6 +1973,14 @@
             "named": true
           },
           {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -1907,6 +2067,14 @@
             "named": true
           },
           {
+            "type": "module_declaration",
+            "named": true
+          },
+          {
+            "type": "module_import",
+            "named": true
+          },
+          {
             "type": "number",
             "named": true
           },
@@ -1930,6 +2098,38 @@
           }
         ]
       },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "module_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "module_import",
+    "named": true,
+    "fields": {
       "name": {
         "multiple": false,
         "required": true,
@@ -2065,6 +2265,14 @@
           "named": true
         },
         {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
+          "type": "module_import",
+          "named": true
+        },
+        {
           "type": "number",
           "named": true
         },
@@ -2149,6 +2357,14 @@
         },
         {
           "type": "macro_def",
+          "named": true
+        },
+        {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
+          "type": "module_import",
           "named": true
         },
         {
@@ -2471,6 +2687,10 @@
     "named": false
   },
   {
+    "type": "export",
+    "named": false
+  },
+  {
     "type": "ext",
     "named": false
   },
@@ -2487,6 +2707,10 @@
     "named": false
   },
   {
+    "type": "import",
+    "named": false
+  },
+  {
     "type": "integer",
     "named": false
   },
@@ -2497,6 +2721,10 @@
   {
     "type": "macro_arg",
     "named": true
+  },
+  {
+    "type": "module",
+    "named": false
   },
   {
     "type": "nomangle",

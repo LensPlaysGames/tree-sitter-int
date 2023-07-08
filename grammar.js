@@ -3,7 +3,7 @@ module.exports = grammar({
 
     conflicts: $ => [
         [$.expr_lambda, $._type_derived],
-        [$._type],
+        [$._type]
     ],
 
     rules: {
@@ -28,7 +28,19 @@ module.exports = grammar({
             $.escaped_identifier,
             $.macro_def,
             $.macro_arg,
-            $.comment
+            $.comment,
+            $.module_declaration,
+            $.module_import
+        ),
+
+        module_declaration: $ => seq(
+            "module",
+            field("name", $.identifier)
+        ),
+
+        module_import: $ => seq(
+            "import",
+            field("name", $.identifier)
         ),
 
         macro_def: $ => seq(
@@ -49,6 +61,7 @@ module.exports = grammar({
         ),
 
         expr_decl: $ => prec(15,seq(
+            optional("export"),
             $._decl_start,
             $._decl_rest
         )),
